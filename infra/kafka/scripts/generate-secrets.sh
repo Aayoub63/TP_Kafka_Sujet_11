@@ -1,6 +1,9 @@
 #!/bin/sh
 set -eu
 
+# Le dossier secrets/ n'existe pas dans un clone neuf (contenu ignoré par Git) :
+# on le crée avant d'en résoudre le chemin absolu.
+mkdir -p "$(dirname -- "$0")/../secrets"
 SECRETS_DIR="$(CDPATH= cd -- "$(dirname -- "$0")/../secrets" && pwd)"
 KEYSTORE_PATH="$SECRETS_DIR/kafka.keystore.jks"
 TRUSTSTORE_PATH="$SECRETS_DIR/kafka.truststore.jks"
