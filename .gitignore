@@ -26,3 +26,6 @@ outils/videos-tp/node_modules/
 
 # Contexte machine local (NFS, docker group), pas du projet
 AGENTS.md
+
+# Sorties brutes des essais du sujet 11 (les bilans utiles vont dans preuves/)
+runtime/sujet11/
