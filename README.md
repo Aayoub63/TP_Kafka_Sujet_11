@@ -1,25 +1,101 @@
 # SAÉ Kafka, sujet 11 : mettre à jour un service avec une continuité métier mesurée
 
-Ce dépôt est dérivé de [simul-pix](https://github.com/wiguyot/ISIMA-TP-kafka-2026), la plateforme pédagogique du cours (copie sans historique). Il ajoute le travail du groupe sur le [sujet 11](TP/SAé/sujet-11-mise-a-jour-sans-interruption.md).
+Groupe : Ayoub Allili, Saad Belmouden, Ibrahim El Haourari, Zakaria Taoussi.
 
-**Garantie visée.** Pendant la mise à jour de `persister-valid` en at-least-once, aucun paiement validé ne doit être perdu ni écrit avec un second effet, et l'arrêt des écritures en base ne doit pas dépasser 60 s. C'est prouvé par un oracle qui compare le topic `validated` à PostgreSQL, après un drainage limité à 120 s. Avec une seule instance, il s'agit d'une reprise avec continuité métier bornée, pas d'une mise à jour sans interruption.
+Ce dépôt part de [simul-pix](https://github.com/wiguyot/ISIMA-TP-kafka-2026), la plateforme du cours, copiée sans son historique. Notre travail porte sur le [sujet 11](TP/SAé/sujet-11-mise-a-jour-sans-interruption.md) : remplacer le service `persister-valid` (celui qui écrit les paiements validés dans PostgreSQL) pendant que les paiements arrivent, et mesurer ce que le métier perd.
 
-**Lancer et rejouer.**
+## Ce qu'on veut prouver
 
-```sh
-./start.sh
-./scripts/sujet11-maj.sh --mode minimale --semantique at_least_once --borne 60   # un essai
-./scripts/sujet11-campagne.sh 3 60                                              # la campagne
-python3 -m unittest discover -s tests                                           # les tests
-```
+Pendant la mise à jour de `persister-valid`, en at-least-once :
 
-**Documents du groupe** (dossier [`docs/sujet11/`](docs/sujet11/)) :
+- aucun paiement validé n'est perdu ;
+- aucun paiement n'a d'effet en double dans la base ;
+- les écritures en base ne s'arrêtent pas plus de 60 s (la borne, fixée par le groupe avant les essais).
 
-- [le problème, la garantie et les définitions](docs/sujet11/garantie.md) ;
-- [la chronologie mesurée d'un rebalance](docs/sujet11/chronologie-rebalance.md) ;
-- [la procédure de mise à jour sûre](docs/sujet11/procedure-mise-a-jour.md) ;
-- [le protocole d'essai](docs/sujet11/protocole-essai.md) ;
-- les preuves : [`preuves/sujet11/`](preuves/sujet11/).
+Pour le vérifier, un script compare chaque paiement du topic `validated` avec ce qui est dans PostgreSQL. On l'appelle l'oracle.
+
+Avec une seule instance, il y a forcément une pause. On ne parle donc pas de mise à jour « sans interruption », mais d'une reprise avec une pause mesurée et bornée.
+
+## Lancer le projet
+
+Il faut Docker avec Docker Compose v2, au moins 4 Go de mémoire pour Docker, et `python3`. La liste complète (ports, systèmes) est dans la section [Prérequis](#prérequis) plus bas.
+
+1. Récupérer le dépôt :
+
+   ```sh
+   git clone git@github.com:Aayoub63/TP_Kafka_Sujet_11.git
+   cd TP_Kafka_Sujet_11
+   ```
+
+2. Démarrer la plateforme. La première fois, comptez 5 à 10 minutes (téléchargement des images).
+
+   ```sh
+   ./start.sh
+   ```
+
+   Pour voir si tout est prêt : <http://localhost:8082/health>.
+
+3. Lancer les tests (19 tests, moins d'une seconde) :
+
+   ```sh
+   python3 -m unittest discover -s tests
+   ```
+
+4. Lancer un essai de mise à jour (environ 4 à 5 minutes) :
+
+   ```sh
+   ./scripts/sujet11-maj.sh --mode minimale --semantique at_least_once --borne 60
+   ```
+
+   Le script envoie 3000 paiements à 20 Pix/s, remplace `persister-valid` au milieu du flux, attend que tout soit traité, puis affiche un bilan. La dernière ligne donne le verdict : `REUSSITE` ou `ECHEC`. Le script refuse de démarrer sans `--borne` : la borne doit être choisie avant l'essai, pas après avoir vu le résultat.
+
+   Les fichiers de l'essai sont dans `runtime/sujet11/<date>-minimale-at_least_once-normale/`. Le plus utile est `bilan.txt`.
+
+5. Rejouer toute la campagne (12 essais, environ 45 minutes) :
+
+   ```sh
+   ./scripts/sujet11-campagne.sh 3 60
+   ```
+
+   Elle fait 3 essais pour chaque cas : at-least-once et at-most-once, à 20 Pix/s et à 60 Pix/s.
+
+Attention : `./stop.sh` arrête la plateforme et efface aussi les données (volumes Docker, base PostgreSQL comprise).
+
+## Ce qu'on a fait
+
+**1. Mesurer la mise à jour de départ.** Nous avons d'abord mesuré la mise à jour telle que la plateforme la faisait. La pause en base était d'environ 44 s, à chaque fois. La campagne du 7 novembre ([résumé](preuves/sujet11/campagne-20261107-184829/resume.md)) donne 12 essais sur 12 réussis, sans perte ni doublon, mais tous avec cette pause de 44 s.
+
+**2. Trouver la cause.** Docker ne prenait qu'environ 5 s. Le reste venait de l'arrêt du service : Python, lancé comme premier processus du conteneur, ignorait le signal SIGTERM. Docker finissait par le tuer, et Kafka attendait la fin de la session du consommateur avant de donner ses partitions à la nouvelle instance. Le détail est dans [chronologie-rebalance.md](docs/sujet11/chronologie-rebalance.md).
+
+**3. Corriger l'arrêt (solution minimale).** Le dernier commit fait réagir `persister-valid` à SIGTERM. Le service finit le message en cours, valide son offset, quitte le groupe Kafka proprement, puis s'arrête. Un essai lancé le 9 novembre après ce commit donne une pause de 3.36 s, 3000 paiements sur 3000 en base, 0 perte et 0 doublon. C'est un seul essai : la campagne refaite avec ce code n'est pas encore publiée dans ce dépôt.
+
+**4. Chercher la perte en at-most-once.** En at-most-once, le service valide l'offset avant d'écrire. Un arrêt brutal entre les deux doit donc perdre un paiement. Pour élargir cette fenêtre, nous avons ralenti l'écriture de 80 ms, à 10 Pix/s ([résumé](preuves/sujet11/amo-ralenti-80ms/resume.md)). Sur 2 essais, nous n'avons vu aucune perte, mais les deux échouent sur le drainage : le service traitait environ 12 Pix/s, ce qui était trop lent pour rattraper le retard dans le temps limite.
+
+Les documents du groupe sont dans [`docs/sujet11/`](docs/sujet11/) :
+
+- [la garantie et les définitions](docs/sujet11/garantie.md) ;
+- [la chronologie d'un rebalance](docs/sujet11/chronologie-rebalance.md) ;
+- [la procédure de mise à jour](docs/sujet11/procedure-mise-a-jour.md) ;
+- [le protocole d'essai](docs/sujet11/protocole-essai.md).
+
+## Ce que nous allons faire ensuite
+
+Ces pistes ont été validées avec le prof. Elles ne sont pas encore dans ce dépôt.
+
+- Une solution améliorée : faire entrer une deuxième instance dans le même groupe Kafka avant d'arrêter proprement l'ancienne, pour réduire la pause.
+- Un essai de panne brutale (`docker kill`) au lieu d'un arrêt propre. C'est là qu'on s'attend à voir la différence entre at-most-once (perte possible) et at-least-once (relecture, doublon absorbé par la base).
+- Une comparaison avec un exactly-once fait dans PostgreSQL : l'offset serait écrit dans la même transaction que le paiement. L'exactly-once de Kafka ne couvre que les échanges entre topics Kafka, pas l'écriture dans une base.
+- Présenter les résultats en proportions, avec un intervalle de confiance à 95 %, plutôt qu'en nombre d'essais.
+- Une mise à jour en continu avec plusieurs instances, où le groupe n'est jamais vide.
+- Un test de retour arrière (revenir à l'ancienne version).
+- Un document qui compare notre solution avec l'exactly-once et explique nos choix.
+
+## Limites
+
+- Peu d'essais : 3 par cas. Zéro perte sur 3 essais ne prouve pas qu'il n'y en aura jamais.
+- Tout tourne sur un seul Mac, avec Docker Desktop. Les temps ne sont pas ceux d'un vrai cluster.
+- Avec une seule instance, la pause existe toujours. On la mesure et on la borne, on ne la supprime pas.
+- L'audit date les écritures avec `now()`, qui donne l'heure du début de la transaction PostgreSQL. Les pauses mesurées peuvent donc être un peu sous-estimées. `clock_timestamp()` donnerait l'heure réelle de chaque écriture.
 
 Le reste de ce README décrit la plateforme simul-pix d'origine.
 
