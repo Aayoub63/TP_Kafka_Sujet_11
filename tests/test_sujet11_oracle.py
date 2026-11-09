@@ -59,6 +59,15 @@ class ClassementTest(unittest.TestCase):
         self.assertEqual(r["lignes_inattendues"], 0)
 
 
+class FluxTest(unittest.TestCase):
+    def test_rejets_pour_delai_comptes_sur_tout_le_flux(self):
+        rejetes = [
+            {"transaction_id": "tx-1", "rejection_type": "TECHNICAL_TIMEOUT", "rejection_reason": "processing_timeout"},
+            {"transaction_id": "tx-2", "rejection_type": "BUSINESS_VALIDATION", "rejection_reason": "amount_must_be_positive"},
+        ]
+        self.assertEqual(oracle.rejets_du_flux(rejetes), {"rejets_total": 2, "rejets_delai": 1})
+
+
 class DoublonsTest(unittest.TestCase):
     def test_tentatives_en_trop_comptees_par_identite(self):
         audit = [{"transaction_id": t, "t": 0.0} for t in ("tx-1", "tx-1", "tx-1", "tx-2", "tx-3", "tx-3")]

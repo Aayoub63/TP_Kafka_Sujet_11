@@ -88,6 +88,18 @@ def doublons_absorbes(audit, valides):
     }
 
 
+def rejets_du_flux(rejetes):
+    """Rejets sur tout le flux, y compris ceux faits avant le topic validated.
+
+    Un paiement rejeté pour délai par pix-decision-engine n'arrive jamais dans
+    validated : l'oracle de persister-valid ne le voit pas. On le compte à part
+    pour distinguer un effet de la surcharge d'un effet de la mise à jour.
+    """
+    delai = sum(1 for r in rejetes
+                if {r["rejection_reason"], r["rejection_type"]} & REJETS_DELAI)
+    return {"rejets_total": len(rejetes), "rejets_delai": delai}
+
+
 def main():
     if len(sys.argv) != 2:
         print(__doc__, file=sys.stderr)
@@ -99,14 +111,16 @@ def main():
     audit = charger(dossier, "audit")
 
     resultat = {"continuite": classer(topic, valides, rejetes),
-                "doublons": doublons_absorbes(audit, valides)}
+                "doublons": doublons_absorbes(audit, valides),
+                "flux": rejets_du_flux(rejetes)}
     with open(os.path.join(dossier, "oracle.json"), "w") as f:
         json.dump(resultat, f, indent=2, ensure_ascii=False)
 
     c, d = resultat["continuite"], resultat["doublons"]
     print(f"[sujet11] oracle : attendus={c['attendus']} " +
           " ".join(f"{k}={v}" for k, v in c["classes"].items()) +
-          f" inattendues={c['lignes_inattendues']} doublons_absorbes={d['doublons_absorbes']}")
+          f" inattendues={c['lignes_inattendues']} doublons_absorbes={d['doublons_absorbes']}"
+          f" rejets_delai_flux={resultat['flux']['rejets_delai']}")
     return 0
 
 
