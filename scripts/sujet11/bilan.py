@@ -103,8 +103,10 @@ def main():
     mesure_pause = pause.mesurer(audit, t0, meta["fin"], meta["debut_reference"])
     apres = [x for x in lag if x["t"] >= t0]
     resultat = {
-        "parametres": {k: meta[k] for k in ("mode", "semantique", "charge", "total", "debit",
-                                             "borne_s", "drainage_max_s")},
+        "parametres": {k: meta.get(k) for k in ("mode", "semantique", "charge", "total", "debit",
+                                                 "borne_s", "cible_metier_s", "drainage_max_s")},
+        "sous_cible_metier": (mesure_pause["pause_s"] is not None and meta.get("cible_metier_s") is not None
+                              and mesure_pause["pause_s"] <= meta["cible_metier_s"]),
         "pause": mesure_pause,
         "retard_max_messages": max((x["lag"] for x in apres), default=None),
         "chronologie": chronologie(meta, lag, evenements),
@@ -128,7 +130,8 @@ def main():
         f" BILAN SUJET 11 — mode={p['mode']} sémantique={p['semantique']} charge={p['charge']}",
         "=" * 66,
         f" Flux : {p['total']} Pix à {p['debit']} Pix/s",
-        f" Pause en base         : {mesure_pause['pause_s']} s (borne {p['borne_s']} s)",
+        f" Pause en base         : {mesure_pause['pause_s']} s (borne {p['borne_s']} s,"
+        f" cible métier {p['cible_metier_s']} s : {'atteinte' if resultat['sous_cible_metier'] else 'non atteinte'})",
         f" Trou normal (référence): {mesure_pause['trou_normal_s']} s",
         f" Retard maximal        : {resultat['retard_max_messages']} messages",
         " Chronologie (secondes après le lancement de la mise à jour) :",
@@ -143,6 +146,7 @@ def main():
         f" rejets délai={c['rejet_delai']} rejets métier={c['rejet_metier']}"
         f" lignes inattendues={oracle['continuite']['lignes_inattendues']}",
         f" Doublons absorbés (audit) : {oracle['doublons']['doublons_absorbes']}",
+        f" Rejets pour délai sur tout le flux : {oracle.get('flux', {}).get('rejets_delai')}",
         f" Drainage terminé : {'oui' if meta['drainage_termine'] else 'non'}",
         "-" * 66,
         f" VERDICT : {resultat['verdict']}" + (" — " + " ; ".join(resultat["raisons"])

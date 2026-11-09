@@ -14,7 +14,7 @@
 # Usage :
 #   ./scripts/sujet11-maj.sh [--mode observee|minimale] [--semantique at_least_once|at_most_once]
 #                            [--debit N] [--duree S] [--charge NOM] [--borne S]
-#                            [--reference S] [--drainage-max S] [--sortie DOSSIER]
+#                            [--cible S] [--reference S] [--drainage-max S] [--sortie DOSSIER]
 #
 # Code de sortie (mode minimale) : 0 si la continuité est respectée, 1 sinon,
 # 2 en cas d'erreur d'utilisation ou de plateforme indisponible.
@@ -30,6 +30,8 @@ DEBIT="20"
 DUREE="150"
 CHARGE="normale"
 BORNE="${SUJET11_BORNE_S:-}"
+# Cible métier : délai de décision (10 s par défaut). Rapportée, sans faire échouer.
+CIBLE="${SUJET11_CIBLE_S:-10}"
 REFERENCE="30"
 DRAINAGE_MAX="120"
 SORTIE=""
@@ -47,6 +49,7 @@ while [ $# -gt 0 ]; do
     --duree) DUREE="$2"; shift 2 ;;
     --charge) CHARGE="$2"; shift 2 ;;
     --borne) BORNE="$2"; shift 2 ;;
+    --cible) CIBLE="$2"; shift 2 ;;
     --reference) REFERENCE="$2"; shift 2 ;;
     --drainage-max) DRAINAGE_MAX="$2"; shift 2 ;;
     --sortie) SORTIE="$2"; shift 2 ;;
@@ -161,6 +164,7 @@ cat >"$SORTIE/meta.json" <<EOF
   "total": $TOTAL,
   "debit": $DEBIT,
   "borne_s": $BORNE,
+  "cible_metier_s": $CIBLE,
   "drainage_max_s": $DRAINAGE_MAX,
   "groupe": "$GROUPE",
   "debut_flux": $DEBUT_FLUX,
