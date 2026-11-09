@@ -1,0 +1,13 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261107-184830-minimale-at_least_once-normale,at_least_once,normale,20,3000,43.985,0.995,870,44.119,3000,0,0,0,0,0,True,False,REUSSITE,
+20261107-185224-minimale-at_least_once-forte,at_least_once,forte,60,9000,43.825,0.95,2574,44.165,9000,0,0,0,0,0,True,False,REUSSITE,
+20261107-185607-minimale-at_most_once-normale,at_most_once,normale,20,3000,43.985,0.998,853,44.144,3000,0,0,0,0,0,True,False,REUSSITE,
+20261107-185948-minimale-at_most_once-forte,at_most_once,forte,60,9000,43.903,0.927,2526,43.518,9000,0,0,0,0,0,True,False,REUSSITE,
+20261107-190335-minimale-at_least_once-normale,at_least_once,normale,20,3000,43.875,0.982,869,44.194,3000,0,0,0,0,0,True,False,REUSSITE,
+20261107-190716-minimale-at_least_once-forte,at_least_once,forte,60,9000,44.014,0.93,2539,44.177,9000,0,0,0,0,0,True,False,REUSSITE,
+20261107-191058-minimale-at_most_once-normale,at_most_once,normale,20,3000,43.869,0.992,864,43.158,3000,0,0,0,0,0,True,False,REUSSITE,
+20261107-191441-minimale-at_most_once-forte,at_most_once,forte,60,9000,44.048,0.957,2527,44.129,9000,0,0,0,0,0,True,False,REUSSITE,
+20261107-191823-minimale-at_least_once-normale,at_least_once,normale,20,3000,43.857,0.989,869,43.163,3000,0,0,0,0,0,True,False,REUSSITE,
+20261107-192205-minimale-at_least_once-forte,at_least_once,forte,60,9000,43.964,0.948,2563,44.165,9000,0,0,0,0,0,True,False,REUSSITE,
+20261107-192549-minimale-at_most_once-normale,at_most_once,normale,20,3000,43.931,0.987,882,44.284,3000,0,0,0,0,0,True,False,REUSSITE,
+20261107-192929-minimale-at_most_once-forte,at_most_once,forte,60,9000,43.96,0.956,2536,43.508,9000,0,0,0,0,0,True,False,REUSSITE,

@@ -1,0 +1,19 @@
+{
+  "id": "20261107-190716-minimale-at_least_once-forte",
+  "mode": "minimale",
+  "semantique": "at_least_once",
+  "charge": "forte",
+  "total": 9000,
+  "debit": 60,
+  "borne_s": 60,
+  "cible_metier_s": 10,
+  "drainage_max_s": 120,
+  "groupe": "simulpix-persister-valid-1794074836",
+  "debut_flux": 1794074885.937,
+  "debut_reference": 1794074895.937,
+  "t0": 1794074915.998,
+  "fin_rebuild": 1794074920.891,
+  "fin": 1794074974.028,
+  "fin_flux": 1794075037.338,
+  "drainage_termine": true
+}

@@ -1,0 +1,18 @@
+==================================================================
+ BILAN SUJET 11 — mode=minimale sémantique=at_least_once charge=normale
+==================================================================
+ Flux : 3000 Pix à 20 Pix/s
+ Pause en base         : 43.857 s (borne 60 s, cible métier 10 s : non atteinte)
+ Trou normal (référence): 0.989 s
+ Retard maximal        : 869 messages
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 0.676 | conteneur mort 3.779 | nouveau conteneur 3.947
+   groupe vide 4.276 | partitions réattribuées 47.439 | lag à 0 48.444
+   dernière écriture 4.133 | première écriture après 47.99
+ Oracle : attendus=3000 présents=3000 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+ Doublons absorbés (audit) : 0
+ Rejets pour délai sur tout le flux : 0
+ Drainage terminé : oui
+------------------------------------------------------------------
+ VERDICT : REUSSITE
+==================================================================
