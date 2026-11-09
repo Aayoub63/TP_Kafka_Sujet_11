@@ -1,0 +1,19 @@
+{
+  "id": "20261107-193818-minimale-at_most_once-ralentie80ms",
+  "mode": "minimale",
+  "semantique": "at_most_once",
+  "charge": "ralentie80ms",
+  "total": 1500,
+  "debit": 10,
+  "borne_s": 60,
+  "cible_metier_s": 10,
+  "drainage_max_s": 120,
+  "groupe": "simulpix-persister-valid-1794076699",
+  "debut_flux": 1794076749.263,
+  "debut_reference": 1794076759.263,
+  "t0": 1794076779.330,
+  "fin_rebuild": 1794076784.241,
+  "fin": 1794076903.267,
+  "fin_flux": 1794076927.113,
+  "drainage_termine": false
+}

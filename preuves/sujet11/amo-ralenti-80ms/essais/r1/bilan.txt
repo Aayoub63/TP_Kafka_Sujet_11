@@ -1,0 +1,18 @@
+==================================================================
+ BILAN SUJET 11 — mode=minimale sémantique=at_most_once charge=ralentie80ms
+==================================================================
+ Flux : 1500 Pix à 10 Pix/s
+ Pause en base         : 44.545 s (borne 60 s, cible métier 10 s : non atteinte)
+ Trou normal (référence): 0.672 s
+ Retard maximal        : 453 messages
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 0.671 | conteneur mort 3.754 | nouveau conteneur 3.849
+   groupe vide 4.177 | partitions réattribuées 48.327 | lag à 0 143.63
+   dernière écriture 4.011 | première écriture après 48.556
+ Oracle : attendus=1500 présents=1500 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+ Doublons absorbés (audit) : 0
+ Rejets pour délai sur tout le flux : 0
+ Drainage terminé : non
+------------------------------------------------------------------
+ VERDICT : ECHEC — drainage non terminé en 120 s
+==================================================================
