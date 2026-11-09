@@ -1,5 +1,6 @@
 import json
 import os
+import signal
 import sys
 import threading
 import time
@@ -330,6 +331,28 @@ def serve_http() -> None:
     server.serve_forever()
 
 
+# Arrêt propre (sujet 11) : Python tourne en PID 1 dans le conteneur. Sans
+# gestionnaire, SIGTERM est ignoré, Docker finit par envoyer SIGKILL et le
+# consommateur ne quitte jamais le groupe : le coordinateur attend alors la fin
+# de la session (45 s par défaut) avant de donner les partitions à la relève.
+STOP_REQUESTED = threading.Event()
+
+
+def request_stop(signum, frame) -> None:
+    # On termine le message en cours : la boucle vérifie ce drapeau entre deux messages.
+    STOP_REQUESTED.set()
+    print(json.dumps({"event": "stop_requested", "signal": signum}), flush=True)
+
+
+def shutdown_gracefully(consumer, connection, pending_commit_record) -> None:
+    if pending_commit_record is not None:
+        consumer.commit(message=pending_commit_record, asynchronous=False)
+    # close() envoie LeaveGroup : le rebalance part tout de suite.
+    consumer.close()
+    connection.close()
+    print(json.dumps({"event": "graceful_shutdown_done"}), flush=True)
+
+
 def main() -> int:
     database_url = os.getenv("SIMULPIX_DATABASE_URL", "postgresql://simulpix:simulpix@postgres:5432/simulpix")
     bootstrap_servers = os.getenv("SIMULPIX_KAFKA_BOOTSTRAP_SERVERS", "kafka-1:29092,kafka-2:29092,kafka-3:29092")
@@ -351,8 +374,9 @@ def main() -> int:
     STATE["consumer_commit_batch_size"] = consumer_settings["commit_batch_size"]
     pending_commit_count = 0
     pending_commit_record = None
+    signal.signal(signal.SIGTERM, request_stop)
 
-    while True:
+    while not STOP_REQUESTED.is_set():
         record = consumer.poll(1.0)
         if record is None:
             if not consumer_settings["auto_commit"] and consumer_settings["commit_strategy"] == "after" and pending_commit_count > 0 and pending_commit_record is not None:
@@ -415,6 +439,9 @@ def main() -> int:
             STATE["consumer_commit_batch_size"] = consumer_settings["commit_batch_size"]
             pending_commit_count = 0
             pending_commit_record = None
+
+    shutdown_gracefully(consumer, connection, pending_commit_record)
+    return 0
 
 
 if __name__ == "__main__":
