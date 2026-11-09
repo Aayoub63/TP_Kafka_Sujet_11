@@ -1,5 +1,29 @@
-Warning: truncated output (original token count: 4242)
-Total output lines: 416
+# SAÉ Kafka, sujet 11 : mettre à jour un service avec une continuité métier mesurée
+
+Ce dépôt est dérivé de [simul-pix](https://github.com/wiguyot/ISIMA-TP-kafka-2026), la plateforme pédagogique du cours (copie sans historique). Il ajoute le travail du groupe sur le [sujet 11](TP/SAé/sujet-11-mise-a-jour-sans-interruption.md).
+
+**Garantie visée.** Pendant la mise à jour de `persister-valid` en at-least-once, aucun paiement validé ne doit être perdu ni écrit avec un second effet, et l'arrêt des écritures en base ne doit pas dépasser 60 s. C'est prouvé par un oracle qui compare le topic `validated` à PostgreSQL, après un drainage limité à 120 s. Avec une seule instance, il s'agit d'une reprise avec continuité métier bornée, pas d'une mise à jour sans interruption.
+
+**Lancer et rejouer.**
+
+```sh
+./start.sh
+./scripts/sujet11-maj.sh --mode minimale --semantique at_least_once --borne 60   # un essai
+./scripts/sujet11-campagne.sh 3 60                                              # la campagne
+python3 -m unittest discover -s tests                                           # les tests
+```
+
+**Documents du groupe** (dossier [`docs/sujet11/`](docs/sujet11/)) :
+
+- [le problème, la garantie et les définitions](docs/sujet11/garantie.md) ;
+- [la chronologie mesurée d'un rebalance](docs/sujet11/chronologie-rebalance.md) ;
+- [la procédure de mise à jour sûre](docs/sujet11/procedure-mise-a-jour.md) ;
+- [le protocole d'essai](docs/sujet11/protocole-essai.md) ;
+- les preuves : [`preuves/sujet11/`](preuves/sujet11/).
+
+Le reste de ce README décrit la plateforme simul-pix d'origine.
+
+---
 
 # Simul-Pix
 
