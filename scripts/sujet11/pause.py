@@ -3,10 +3,13 @@
 Définition retenue : la pause est le plus long intervalle sans nouvelle
 écriture dans validated_transactions qui touche la fenêtre de l'opération
 [t0, fin]. Les heures viennent de la table d'audit (une ligne par tentative
-d'écriture, heure posée par PostgreSQL avec now()).
+d'écriture, heure posée par PostgreSQL avec clock_timestamp() depuis le
+9 novembre ; avec now() avant, voir preuves/sujet11/NOTE-heure-audit.md).
 
 On mesure aussi le « trou normal » avant l'opération (référence), pour
-savoir ce que la mise à jour ajoute vraiment.
+savoir ce que la mise à jour ajoute vraiment. C'est aussi la résolution de
+la mesure : le générateur émet par paquets, donc une pause plus courte que
+ce trou est invisible (voir bilan.pause_distincte).
 """
 
 
