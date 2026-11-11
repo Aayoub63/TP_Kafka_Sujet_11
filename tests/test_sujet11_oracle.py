@@ -77,6 +77,14 @@ class DoublonsTest(unittest.TestCase):
         self.assertEqual(r["doublons_absorbes"], 3)
         self.assertEqual(r["exemples"][0], "tx-1")
 
+    def test_relecture_compte_une_fois(self):
+        # une relecture : INSERT puis UPDATE de l'upsert, mesuré le 9 novembre
+        audit = [{"transaction_id": "tx-1", "t": 0.0, "kind": "INSERT"},
+                 {"transaction_id": "tx-1", "t": 1.0, "kind": "INSERT"},
+                 {"transaction_id": "tx-1", "t": 1.0, "kind": "UPDATE"}]
+        r = oracle.doublons_absorbes(audit, [{"transaction_id": "tx-1"}])
+        self.assertEqual((r["doublons_absorbes"], r["tentatives"]), (1, 2))
+
     def test_audit_absent(self):
         r = oracle.doublons_absorbes([], [])
         self.assertFalse(r["audit_actif"])
