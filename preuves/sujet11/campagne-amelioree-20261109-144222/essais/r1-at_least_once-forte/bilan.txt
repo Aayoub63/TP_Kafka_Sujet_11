@@ -1,0 +1,29 @@
+==================================================================
+ BILAN SUJET 11 — mode=amelioree sémantique=at_least_once charge=forte
+==================================================================
+ Flux : 9000 Pix à 60 Pix/s, persister-valid arret-propre
+ Pause en base         : 0.998 s (borne 60 s, cible métier 10 s : atteinte)
+ Trou normal (référence): 0.948 s
+ Retard maximal        : 37 messages
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 3.15 | conteneur mort 3.75 | nouveau conteneur 0.771
+   signaux reçus par l'ancienne instance (instant, numéro) : [[3.15, '15']]
+   deux membres dans le groupe 2.966 | arrêt de l'ancienne demandé 3.062
+   groupe vide 1.976 | partitions réattribuées 2.966 | lag à 0 2.966
+   dernière écriture 3.691 | première écriture après 4.689
+ Passations de partitions et message en cours :
+   2.966 s partition 0 : instance 1 -> instance 2 (sans propriétaire 0.99 s), reprise à l'offset 346 : tx-00002081 déjà écrit avant et pas relu (offset relevé en retard)
+   2.966 s partition 1 : instance 1 -> instance 2 (sans propriétaire 0.99 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   2.966 s partition 2 : instance 1 -> instance 2 (sans propriétaire 0.99 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   5.996 s partition 3 : instance 1 -> instance 2 (sans propriétaire 1.0 s), reprise à l'offset 364 : tx-00002186 pas encore écrit, lu par la nouvelle instance
+   5.996 s partition 4 : instance 1 -> instance 2 (sans propriétaire 1.0 s), reprise à l'offset 728 : tx-00002187 pas encore écrit, lu par la nouvelle instance
+   5.996 s partition 5 : instance 1 -> instance 2 (sans propriétaire 1.0 s), reprise à l'offset 729 : tx-00002190 déjà écrit avant et pas relu (offset relevé en retard)
+ Oracle : attendus=9000 présents=9000 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+ Trous de transaction_id en base : 0 sur 9000
+ Doublons absorbés (audit) : 0
+ Rejets pour délai sur tout le flux : 0
+ Drainage terminé : oui
+ Horloge Docker - machine : décalage 0.0345 s corrigé, dérive pendant l'essai 0.003 s
+------------------------------------------------------------------
+ VERDICT : REUSSITE
+==================================================================

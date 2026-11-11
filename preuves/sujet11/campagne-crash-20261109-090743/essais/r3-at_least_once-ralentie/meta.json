@@ -1,0 +1,21 @@
+{
+  "id": "20261109-093038-crash-at_least_once-ralentie",
+  "mode": "crash",
+  "semantique": "at_least_once",
+  "charge": "ralentie",
+  "total": 1500,
+  "debit": 10,
+  "borne_s": 60,
+  "cible_metier_s": 10,
+  "drainage_max_s": 180,
+  "ralenti_ms": 80,
+  "groupe": "simulpix-persister-valid-1794213039",
+  "debut_flux": 1794213096.858,
+  "debut_reference": 1794213106.858,
+  "t0": 1794213126.934,
+  "t_arret": 1794213126.934,
+  "fin_rebuild": 1794213127.477,
+  "fin": 1794213276.262,
+  "fin_flux": 1794213276.635,
+  "drainage_termine": true
+}

@@ -1,0 +1,20 @@
+{
+  "id": "20261107-203726-amelioree-at_most_once-forte",
+  "mode": "amelioree",
+  "semantique": "at_most_once",
+  "charge": "forte",
+  "total": 9000,
+  "debit": 60,
+  "borne_s": 60,
+  "cible_metier_s": 10,
+  "drainage_max_s": 120,
+  "groupe": "simulpix-persister-valid-1794080247",
+  "debut_flux": 1794080296.466,
+  "debut_reference": 1794080306.466,
+  "t0": 1794080326.523,
+  "t_arret": 1794080333.757,
+  "fin_rebuild": 1794080328.391,
+  "fin": 1794080342.709,
+  "fin_flux": 1794080447.658,
+  "drainage_termine": true
+}

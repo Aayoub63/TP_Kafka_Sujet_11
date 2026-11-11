@@ -1,0 +1,13 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261107-204407-amelioree-at_least_once-normale,at_least_once,normale,20,3000,1.022,0.99,83,1.033,3000,0,0,0,0,0,True,True,REUSSITE,
+20261107-195939-amelioree-at_least_once-forte,at_least_once,forte,60,9000,0.933,0.939,7,1.158,9000,0,0,0,0,0,True,True,REUSSITE,
+20261107-200332-amelioree-at_most_once-normale,at_most_once,normale,20,3000,0.981,0.993,14,1.001,3000,0,0,0,0,0,True,True,REUSSITE,
+20261107-200717-amelioree-at_most_once-forte,at_most_once,forte,60,9000,1.004,0.935,31,2.011,9000,0,0,0,0,0,True,True,REUSSITE,
+20261107-201103-amelioree-at_least_once-normale,at_least_once,normale,20,3000,0.968,0.989,5,1.014,3000,0,0,0,0,0,True,True,REUSSITE,
+20261107-201450-amelioree-at_least_once-forte,at_least_once,forte,60,9000,0.946,0.946,7,1.006,9000,0,0,0,0,0,True,True,REUSSITE,
+20261107-201836-amelioree-at_most_once-normale,at_most_once,normale,20,3000,1.009,1.005,29,1.003,3000,0,0,0,0,0,True,True,REUSSITE,
+20261107-202217-amelioree-at_most_once-forte,at_most_once,forte,60,9000,0.983,0.948,6,2.003,9000,0,0,0,0,0,True,True,REUSSITE,
+20261107-202601-amelioree-at_least_once-normale,at_least_once,normale,20,3000,1.011,0.988,29,1.002,3000,0,0,0,0,0,True,True,REUSSITE,
+20261107-202942-amelioree-at_least_once-forte,at_least_once,forte,60,9000,0.937,0.95,9,1.001,9000,0,0,0,0,0,True,True,REUSSITE,
+20261107-203328-amelioree-at_most_once-normale,at_most_once,normale,20,3000,0.992,0.989,5,3.013,3000,0,0,0,0,0,True,True,REUSSITE,
+20261107-203726-amelioree-at_most_once-forte,at_most_once,forte,60,9000,1.026,0.96,123,3.007,9000,0,0,0,0,0,True,True,REUSSITE,

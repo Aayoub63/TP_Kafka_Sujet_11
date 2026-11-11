@@ -1,0 +1,29 @@
+==================================================================
+ BILAN SUJET 11 — mode=crash sémantique=at_least_once charge=ralentie
+==================================================================
+ Flux : 1500 Pix à 10 Pix/s, persister-valid arret-propre, ralenti 80 ms
+ Pause en base         : 45.015 s (borne 60 s, cible métier 10 s : non atteinte)
+ Trou normal (référence): 0.664 s
+ Retard maximal        : 500 messages
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 0.022 | conteneur mort 0.098 | nouveau conteneur 0.28
+   signaux reçus par l'ancienne instance (instant, numéro) : [[0.022, '9']]
+   deux membres dans le groupe None | arrêt de l'ancienne demandé None
+   groupe vide 1.062 | partitions réattribuées 46.28 | lag à 0 144.661
+   dernière écriture -0.026 | première écriture après 44.988
+ Passations de partitions et message en cours :
+   46.28 s partition 0 : instance 1 -> instance 2 (sans propriétaire 45.218 s), reprise à l'offset 52 : tx-00000317 pas encore écrit, lu par la nouvelle instance
+   46.28 s partition 1 : instance 1 -> instance 2 (sans propriétaire 45.218 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   46.28 s partition 2 : instance 1 -> instance 2 (sans propriétaire 45.218 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   46.28 s partition 3 : instance 1 -> instance 2 (sans propriétaire 45.218 s), reprise à l'offset 51 : tx-00000308 pas encore écrit, lu par la nouvelle instance
+   46.28 s partition 4 : instance 1 -> instance 2 (sans propriétaire 45.218 s), reprise à l'offset 102 : tx-00000309 déjà écrit avant, relu (2 écritures, doublon absorbé)
+   46.28 s partition 5 : instance 1 -> instance 2 (sans propriétaire 45.218 s), reprise à l'offset 104 : tx-00000313 pas encore écrit, lu par la nouvelle instance
+ Oracle : attendus=1500 présents=1500 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+ Trous de transaction_id en base : 0 sur 1500
+ Doublons absorbés (audit) : 1
+ Rejets pour délai sur tout le flux : 0
+ Drainage terminé : oui
+ Horloge Docker - machine : décalage 0.036500000000000005 s corrigé, dérive pendant l'essai 0.005 s
+------------------------------------------------------------------
+ VERDICT : REUSSITE
+==================================================================

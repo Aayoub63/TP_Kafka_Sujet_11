@@ -1,0 +1,7 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261109-090744-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.009,0.672,460,68.604,1500,0,0,0,1,0,True,False,REUSSITE,
+20261109-091237-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.089,0.667,499,44.642,1500,1,0,0,0,0,True,False,ECHEC,1 paiement(s) perdu(s)
+20261109-091927-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.004,0.663,456,44.344,1500,0,0,0,1,0,True,False,REUSSITE,
+20261109-092347-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.088,0.666,461,44.619,1500,1,0,0,0,0,True,False,ECHEC,1 paiement(s) perdu(s)
+20261109-093038-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.005,0.668,495,43.609,1500,0,0,0,1,0,True,False,REUSSITE,
+20261109-093512-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.089,0.674,500,43.986,1500,1,0,0,0,0,True,False,ECHEC,1 paiement(s) perdu(s)

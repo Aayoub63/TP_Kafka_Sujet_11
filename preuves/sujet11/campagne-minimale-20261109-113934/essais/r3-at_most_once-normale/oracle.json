@@ -1,0 +1,40 @@
+{
+  "continuite": {
+    "attendus": 2443,
+    "messages_topic": 2443,
+    "classes": {
+      "present": 2443,
+      "valeur_fausse": 0,
+      "rejet_delai": 0,
+      "rejet_metier": 0,
+      "perdu": 0
+    },
+    "lignes_inattendues": 19,
+    "exemples": {
+      "lignes_inattendues": [
+        "tx-00002479",
+        "tx-00002480",
+        "tx-00002481",
+        "tx-00002482",
+        "tx-00002483",
+        "tx-00002484",
+        "tx-00002485",
+        "tx-00002486",
+        "tx-00002487",
+        "tx-00002488"
+      ]
+    }
+  },
+  "doublons": {
+    "audit_actif": true,
+    "tentatives": 2462,
+    "identites_ecrites": 2462,
+    "lignes_en_base": 2462,
+    "doublons_absorbes": 0,
+    "exemples": []
+  },
+  "flux": {
+    "rejets_total": 35,
+    "rejets_delai": 35
+  }
+}

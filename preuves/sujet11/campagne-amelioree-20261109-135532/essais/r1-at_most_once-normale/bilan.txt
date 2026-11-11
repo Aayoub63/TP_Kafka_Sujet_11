@@ -1,0 +1,29 @@
+==================================================================
+ BILAN SUJET 11 — mode=amelioree sémantique=at_most_once charge=normale
+==================================================================
+ Flux : 3000 Pix à 20 Pix/s, persister-valid arret-propre
+ Pause en base         : 0.954 s (borne 60 s, cible métier 10 s : atteinte)
+ Trou normal (référence): 0.989 s
+ Retard maximal        : 12 messages
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 6.25 | conteneur mort 6.729 | nouveau conteneur 1.383
+   signaux reçus par l'ancienne instance (instant, numéro) : [[6.25, '15']]
+   deux membres dans le groupe 5.042 | arrêt de l'ancienne demandé 6.058
+   groupe vide 3.432 | partitions réattribuées 5.042 | lag à 0 5.042
+   dernière écriture -0.472 | première écriture après 0.482
+ Passations de partitions et message en cours :
+   5.042 s partition 3 : instance 1 -> instance 2 (sans propriétaire 1.61 s), reprise à l'offset 116 : tx-00000698 pas encore écrit, lu par la nouvelle instance
+   5.042 s partition 4 : instance 1 -> instance 2 (sans propriétaire 1.61 s), reprise à l'offset 232 : tx-00000699 pas encore écrit, lu par la nouvelle instance
+   5.042 s partition 5 : instance 1 -> instance 2 (sans propriétaire 1.61 s), reprise à l'offset 233 : tx-00000702 pas encore écrit, lu par la nouvelle instance
+   8.016 s partition 0 : instance 1 -> instance 2 (sans propriétaire 0.0 s), reprise à l'offset 131 (à une seconde près) : tx-00000791 déjà écrit avant et pas relu (offset relevé en retard)
+   8.016 s partition 1 : instance 1 -> instance 2 (sans propriétaire 0.0 s), reprise à l'offset None (à une seconde près) : aucun offset validé (partition sans message)
+   8.016 s partition 2 : instance 1 -> instance 2 (sans propriétaire 0.0 s), reprise à l'offset None (à une seconde près) : aucun offset validé (partition sans message)
+ Oracle : attendus=3000 présents=3000 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+ Trous de transaction_id en base : 0 sur 3000
+ Doublons absorbés (audit) : 0
+ Rejets pour délai sur tout le flux : 0
+ Drainage terminé : oui
+ Horloge Docker - machine : décalage 0.0625 s corrigé, dérive pendant l'essai 0.013 s
+------------------------------------------------------------------
+ VERDICT : REUSSITE
+==================================================================

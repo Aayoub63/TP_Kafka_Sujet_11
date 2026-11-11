@@ -1,0 +1,5 @@
+1794078292568563303 create persister-valid-b 
+1794078292670997678 start persister-valid-b 
+1794078296073185638 kill persister-valid 15
+1794078296980793708 stop persister-valid 
+1794078296983179000 die persister-valid 

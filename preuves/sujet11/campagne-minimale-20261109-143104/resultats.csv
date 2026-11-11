@@ -1,0 +1,4 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261109-143107-minimale-at_least_once-forte,at_least_once,forte,60,9000,3.445,0.951,146,3.004,9000,0,0,0,0,0,True,True,REUSSITE,
+20261109-143449-minimale-at_most_once-forte,at_most_once,forte,60,9000,4.454,0.956,222,4.983,9000,0,0,0,0,0,True,True,REUSSITE,
+20261109-143836-minimale-exactly_once_pg-forte,exactly_once_pg,forte,60,9000,3.456,0.958,141,2.952,9000,0,0,0,0,0,True,True,REUSSITE,

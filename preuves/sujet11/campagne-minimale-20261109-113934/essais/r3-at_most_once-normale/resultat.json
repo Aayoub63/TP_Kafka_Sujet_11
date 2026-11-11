@@ -1,0 +1,202 @@
+{
+  "parametres": {
+    "mode": "minimale",
+    "semantique": "at_most_once",
+    "charge": "normale",
+    "total": 3000,
+    "debit": 20,
+    "borne_s": 60,
+    "cible_metier_s": 10,
+    "drainage_max_s": 120,
+    "ralenti_ms": 0
+  },
+  "sous_cible_metier": false,
+  "pause": {
+    "ecritures": 2462,
+    "trou_normal_s": null,
+    "pause_s": null,
+    "reprise": null,
+    "derniere_ecriture_avant_s": null,
+    "premiere_ecriture_apres_s": null
+  },
+  "retard_max_messages": 64,
+  "chronologie": {
+    "signal_arret_s": 498.948,
+    "signaux_recus": [
+      [
+        498.948,
+        "15"
+      ]
+    ],
+    "conteneur_mort_s": 499.524,
+    "nouveau_conteneur_s": 499.7,
+    "deux_membres_s": null,
+    "arret_ancien_demande_s": null,
+    "groupe_vide_s": 3.075,
+    "partitions_reattribuees_s": 5.673,
+    "lag_revenu_a_zero_s": 6.945,
+    "groupe_vide_duree_s": 2.598
+  },
+  "partitions": {
+    "instances": {
+      "instance 1": "rdkafka-712ebee2-94c6-4992-9a67-7754f9ffd257",
+      "instance 2": "rdkafka-fe65db82-a22e-439a-8a61-f0148522c97e"
+    },
+    "passations": [
+      {
+        "t_s": 5.673,
+        "partition": 0,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 2.598,
+        "offset_reprise": 105,
+        "offset_sur": true,
+        "message_repris": "tx-00000671",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000665",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 5.673,
+        "partition": 1,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 2.598,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 5.673,
+        "partition": 2,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 2.598,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 5.673,
+        "partition": 3,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 2.598,
+        "offset_reprise": 106,
+        "offset_sur": true,
+        "message_repris": "tx-00000674",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000668",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 5.673,
+        "partition": 4,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 2.598,
+        "offset_reprise": 210,
+        "offset_sur": true,
+        "message_repris": "tx-00000669",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000664",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 5.673,
+        "partition": 5,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 2.598,
+        "offset_reprise": 213,
+        "offset_sur": true,
+        "message_repris": "tx-00000673",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000672",
+        "precedent_ecrit": true
+      }
+    ]
+  },
+  "trous": {
+    "attendus": 3000,
+    "en_base": 2497,
+    "trous": 503,
+    "exemples": [
+      "tx-00002498",
+      "tx-00002499",
+      "tx-00002500",
+      "tx-00002501",
+      "tx-00002502",
+      "tx-00002503",
+      "tx-00002504",
+      "tx-00002505",
+      "tx-00002506",
+      "tx-00002507"
+    ],
+    "hors_plage": []
+  },
+  "drainage_termine": true,
+  "version_persister_valid": "arret-propre",
+  "oracle": {
+    "continuite": {
+      "attendus": 2443,
+      "messages_topic": 2443,
+      "classes": {
+        "present": 2443,
+        "valeur_fausse": 0,
+        "rejet_delai": 0,
+        "rejet_metier": 0,
+        "perdu": 0
+      },
+      "lignes_inattendues": 19,
+      "exemples": {
+        "lignes_inattendues": [
+          "tx-00002479",
+          "tx-00002480",
+          "tx-00002481",
+          "tx-00002482",
+          "tx-00002483",
+          "tx-00002484",
+          "tx-00002485",
+          "tx-00002486",
+          "tx-00002487",
+          "tx-00002488"
+        ]
+      }
+    },
+    "doublons": {
+      "audit_actif": true,
+      "tentatives": 2462,
+      "identites_ecrites": 2462,
+      "lignes_en_base": 2462,
+      "doublons_absorbes": 0,
+      "exemples": []
+    },
+    "flux": {
+      "rejets_total": 35,
+      "rejets_delai": 35
+    }
+  },
+  "horloge": {
+    "decalage_s": -497.79999999999995,
+    "derive_s": 993.818,
+    "flux_termine": false
+  },
+  "verdict": "INVALIDE",
+  "raisons": [
+    "horloge de Docker décalée de -0.891 s puis -994.709 s",
+    "flux pas terminé avant la collecte"
+  ]
+}

@@ -1,0 +1,4 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261109-144222-amelioree-at_least_once-forte,at_least_once,forte,60,9000,0.998,0.948,37,0.99,9000,0,0,0,0,0,True,True,REUSSITE,
+20261109-144609-amelioree-at_most_once-forte,at_most_once,forte,60,9000,0.945,0.947,7,1.999,9000,0,0,0,0,0,True,True,REUSSITE,
+20261109-144956-amelioree-exactly_once_pg-forte,exactly_once_pg,forte,60,9000,0.947,0.952,7,0.957,9000,0,0,0,0,0,True,True,REUSSITE,

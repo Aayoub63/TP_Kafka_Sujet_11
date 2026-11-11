@@ -1,0 +1,20 @@
+==================================================================
+ BILAN SUJET 11 — mode=amelioree sémantique=at_most_once charge=forte
+==================================================================
+ Flux : 9000 Pix à 60 Pix/s
+ Pause en base         : 1.026 s (borne 60 s, cible métier 10 s : atteinte)
+ Trou normal (référence): 0.96 s
+ Retard maximal        : 123 messages
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 7.372 | conteneur mort 8.05 | nouveau conteneur 1.834
+   signaux reçus par l'ancienne instance (instant, numéro) : [[7.372, '15']]
+   deux membres dans le groupe 5.232 | arrêt de l'ancienne demandé 7.234
+   groupe vide 2.225 | partitions réattribuées 5.232 | lag à 0 5.232
+   dernière écriture 7.963 | première écriture après 8.99
+ Oracle : attendus=9000 présents=9000 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+ Doublons absorbés (audit) : 0
+ Rejets pour délai sur tout le flux : 0
+ Drainage terminé : oui
+------------------------------------------------------------------
+ VERDICT : REUSSITE
+==================================================================

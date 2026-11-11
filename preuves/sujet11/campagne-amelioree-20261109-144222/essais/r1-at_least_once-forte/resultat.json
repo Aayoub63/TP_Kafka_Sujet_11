@@ -1,0 +1,175 @@
+{
+  "parametres": {
+    "mode": "amelioree",
+    "semantique": "at_least_once",
+    "charge": "forte",
+    "total": 9000,
+    "debit": 60,
+    "borne_s": 60,
+    "cible_metier_s": 10,
+    "drainage_max_s": 120,
+    "ralenti_ms": 0
+  },
+  "sous_cible_metier": true,
+  "pause": {
+    "ecritures": 9000,
+    "trou_normal_s": 0.948,
+    "pause_s": 0.998,
+    "reprise": true,
+    "derniere_ecriture_avant_s": 3.691,
+    "premiere_ecriture_apres_s": 4.689
+  },
+  "retard_max_messages": 37,
+  "chronologie": {
+    "signal_arret_s": 3.15,
+    "signaux_recus": [
+      [
+        3.15,
+        "15"
+      ]
+    ],
+    "conteneur_mort_s": 3.75,
+    "nouveau_conteneur_s": 0.771,
+    "deux_membres_s": 2.966,
+    "arret_ancien_demande_s": 3.062,
+    "groupe_vide_s": 1.976,
+    "partitions_reattribuees_s": 2.966,
+    "lag_revenu_a_zero_s": 2.966,
+    "groupe_vide_duree_s": 0.99
+  },
+  "partitions": {
+    "instances": {
+      "instance 1": "rdkafka-6d200264-c13b-4e56-b5f2-6fb98d471382",
+      "instance 2": "rdkafka-41079fbe-2d77-4296-a75d-157f658eca31"
+    },
+    "passations": [
+      {
+        "t_s": 2.966,
+        "partition": 0,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 0.99,
+        "offset_reprise": 346,
+        "offset_sur": true,
+        "message_repris": "tx-00002081",
+        "deja_ecrit_avant": true,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00002075",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 2.966,
+        "partition": 1,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 0.99,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 2.966,
+        "partition": 2,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 0.99,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 5.996,
+        "partition": 3,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 1.0,
+        "offset_reprise": 364,
+        "offset_sur": true,
+        "message_repris": "tx-00002186",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00002180",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 5.996,
+        "partition": 4,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 1.0,
+        "offset_reprise": 728,
+        "offset_sur": true,
+        "message_repris": "tx-00002187",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00002182",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 5.996,
+        "partition": 5,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 1.0,
+        "offset_reprise": 729,
+        "offset_sur": true,
+        "message_repris": "tx-00002190",
+        "deja_ecrit_avant": true,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00002185",
+        "precedent_ecrit": true
+      }
+    ]
+  },
+  "trous": {
+    "attendus": 9000,
+    "en_base": 9000,
+    "trous": 0,
+    "exemples": [],
+    "hors_plage": []
+  },
+  "drainage_termine": true,
+  "version_persister_valid": "arret-propre",
+  "oracle": {
+    "continuite": {
+      "attendus": 9000,
+      "messages_topic": 9000,
+      "classes": {
+        "present": 9000,
+        "valeur_fausse": 0,
+        "rejet_delai": 0,
+        "rejet_metier": 0,
+        "perdu": 0
+      },
+      "lignes_inattendues": 0,
+      "exemples": {}
+    },
+    "doublons": {
+      "audit_actif": true,
+      "tentatives": 9000,
+      "identites_ecrites": 9000,
+      "lignes_en_base": 9000,
+      "doublons_absorbes": 0,
+      "exemples": []
+    },
+    "flux": {
+      "rejets_total": 0,
+      "rejets_delai": 0
+    }
+  },
+  "horloge": {
+    "decalage_s": 0.0345,
+    "derive_s": 0.003,
+    "flux_termine": true
+  },
+  "verdict": "REUSSITE",
+  "raisons": []
+}

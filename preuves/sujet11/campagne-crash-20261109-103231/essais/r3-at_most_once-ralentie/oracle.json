@@ -1,0 +1,31 @@
+{
+  "continuite": {
+    "attendus": 1500,
+    "messages_topic": 1500,
+    "classes": {
+      "present": 1499,
+      "valeur_fausse": 0,
+      "rejet_delai": 0,
+      "rejet_metier": 0,
+      "perdu": 1
+    },
+    "lignes_inattendues": 0,
+    "exemples": {
+      "perdu": [
+        "tx-00000324"
+      ]
+    }
+  },
+  "doublons": {
+    "audit_actif": true,
+    "tentatives": 1499,
+    "identites_ecrites": 1499,
+    "lignes_en_base": 1499,
+    "doublons_absorbes": 0,
+    "exemples": []
+  },
+  "flux": {
+    "rejets_total": 0,
+    "rejets_delai": 0
+  }
+}

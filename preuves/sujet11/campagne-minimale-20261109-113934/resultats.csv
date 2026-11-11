@@ -1,0 +1,11 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261109-113934-minimale-at_least_once-normale,at_least_once,normale,20,3000,3.463,0.988,78,3.029,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-114433-minimale-at_most_once-normale,at_most_once,normale,20,3000,4.416,0.992,123,4.125,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-115010-minimale-exactly_once_pg-normale,exactly_once_pg,normale,20,3000,3.443,0.99,85,3.026,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-115352-minimale-at_least_once-normale,at_least_once,normale,20,3000,3.504,0.99,94,2.962,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-115735-minimale-at_most_once-normale,at_most_once,normale,20,3000,3.514,0.989,94,2.953,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-120135-minimale-exactly_once_pg-normale,exactly_once_pg,normale,20,3000,3.443,0.99,68,3.018,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-120534-minimale-at_least_once-normale,at_least_once,normale,20,3000,3.418,0.988,78,3.034,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-120937-minimale-at_most_once-normale,at_most_once,normale,20,3000,,,64,2.598,2443,0,0,19,0,35,True,False,INVALIDE,horloge de Docker décalée de -0.891 s puis -994.709 s ; flux pas terminé avant la collecte
+20261109-135122-minimale-exactly_once_pg-normale,exactly_once_pg,normale,20,3000,3.676,0.98,94,2.614,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-145957-minimale-at_most_once-normale,at_most_once,normale,20,3000,3.377,0.991,78,3.029,3000,0,0,0,0,0,True,True,REUSSITE,

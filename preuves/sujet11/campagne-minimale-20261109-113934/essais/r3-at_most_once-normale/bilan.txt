@@ -1,0 +1,29 @@
+==================================================================
+ BILAN SUJET 11 — mode=minimale sémantique=at_most_once charge=normale
+==================================================================
+ Flux : 3000 Pix à 20 Pix/s, persister-valid arret-propre
+ Pause en base         : None s (borne 60 s, cible métier 10 s : non atteinte)
+ Trou normal (référence): None s
+ Retard maximal        : 64 messages
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 498.948 | conteneur mort 499.524 | nouveau conteneur 499.7
+   signaux reçus par l'ancienne instance (instant, numéro) : [[498.948, '15']]
+   deux membres dans le groupe None | arrêt de l'ancienne demandé None
+   groupe vide 3.075 | partitions réattribuées 5.673 | lag à 0 6.945
+   dernière écriture None | première écriture après None
+ Passations de partitions et message en cours :
+   5.673 s partition 0 : instance 1 -> instance 2 (sans propriétaire 2.598 s), reprise à l'offset 105 : tx-00000671 pas encore écrit, lu par la nouvelle instance
+   5.673 s partition 1 : instance 1 -> instance 2 (sans propriétaire 2.598 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   5.673 s partition 2 : instance 1 -> instance 2 (sans propriétaire 2.598 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   5.673 s partition 3 : instance 1 -> instance 2 (sans propriétaire 2.598 s), reprise à l'offset 106 : tx-00000674 pas encore écrit, lu par la nouvelle instance
+   5.673 s partition 4 : instance 1 -> instance 2 (sans propriétaire 2.598 s), reprise à l'offset 210 : tx-00000669 pas encore écrit, lu par la nouvelle instance
+   5.673 s partition 5 : instance 1 -> instance 2 (sans propriétaire 2.598 s), reprise à l'offset 213 : tx-00000673 pas encore écrit, lu par la nouvelle instance
+ Oracle : attendus=2443 présents=2443 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=19
+ Trous de transaction_id en base : 503 sur 3000 (exemples : tx-00002498, tx-00002499, tx-00002500, tx-00002501, tx-00002502, tx-00002503, tx-00002504, tx-00002505, tx-00002506, tx-00002507)
+ Doublons absorbés (audit) : 0
+ Rejets pour délai sur tout le flux : 35
+ Drainage terminé : oui
+ Horloge Docker - machine : décalage -497.79999999999995 s corrigé, dérive pendant l'essai 993.818 s
+------------------------------------------------------------------
+ VERDICT : INVALIDE — horloge de Docker décalée de -0.891 s puis -994.709 s ; flux pas terminé avant la collecte
+==================================================================

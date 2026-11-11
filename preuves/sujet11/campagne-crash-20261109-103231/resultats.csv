@@ -1,0 +1,10 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261109-103231-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.015,0.664,500,45.218,1500,0,0,0,1,0,True,False,REUSSITE,
+20261109-103656-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.095,0.677,460,45.145,1500,1,0,0,0,0,True,False,INVALIDE,flux pas terminé avant la collecte
+20261109-104608-crash-exactly_once_pg-ralentie,exactly_once_pg,ralentie,10,1500,45.006,0.661,461,45.057,1500,0,0,0,0,0,True,False,REUSSITE,
+20261109-105022-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.009,0.656,461,45.183,1500,0,0,0,1,0,True,False,REUSSITE,
+20261109-105432-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.087,0.661,459,45.085,1500,1,0,0,0,0,True,False,INVALIDE,flux pas terminé avant la collecte
+20261109-110346-crash-exactly_once_pg-ralentie,exactly_once_pg,ralentie,10,1500,45.008,0.666,461,45.176,1500,0,0,0,0,0,True,False,REUSSITE,
+20261109-110758-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.01,0.667,498,44.411,1500,0,0,0,1,0,True,False,REUSSITE,
+20261109-111210-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.097,0.654,501,45.139,1500,1,0,0,0,0,True,False,INVALIDE,flux pas terminé avant la collecte
+20261109-112125-crash-exactly_once_pg-ralentie,exactly_once_pg,ralentie,10,1500,45.005,0.666,457,45.165,1500,0,0,0,0,0,True,False,REUSSITE,

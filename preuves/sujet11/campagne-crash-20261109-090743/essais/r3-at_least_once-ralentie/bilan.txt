@@ -1,0 +1,27 @@
+==================================================================
+ BILAN SUJET 11 — mode=crash sémantique=at_least_once charge=ralentie
+==================================================================
+ Flux : 1500 Pix à 10 Pix/s, persister-valid arret-propre, ralenti 80 ms
+ Pause en base         : 45.005 s (borne 60 s, cible métier 10 s : non atteinte)
+ Trou normal (référence): 0.668 s
+ Retard maximal        : 495 messages
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 0.113 | conteneur mort 0.236 | nouveau conteneur 0.504
+   signaux reçus par l'ancienne instance (instant, numéro) : [[0.113, '9']]
+   deux membres dans le groupe None | arrêt de l'ancienne demandé None
+   groupe vide 0.816 | partitions réattribuées 44.425 | lag à 0 143.93
+   dernière écriture 0.111 | première écriture après 45.115
+ Passations de partitions et message en cours :
+   44.425 s partition 0 : instance 1 -> instance 2 (sans propriétaire 43.609 s), reprise à l'offset 51 : tx-00000311 pas encore écrit, lu par la nouvelle instance
+   44.425 s partition 1 : instance 1 -> instance 2 (sans propriétaire 43.609 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   44.425 s partition 2 : instance 1 -> instance 2 (sans propriétaire 43.609 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   44.425 s partition 3 : instance 1 -> instance 2 (sans propriétaire 43.609 s), reprise à l'offset 51 : tx-00000308 pas encore écrit, lu par la nouvelle instance
+   44.425 s partition 4 : instance 1 -> instance 2 (sans propriétaire 43.609 s), reprise à l'offset 102 : tx-00000309 déjà écrit avant, relu (2 écritures, doublon absorbé)
+   44.425 s partition 5 : instance 1 -> instance 2 (sans propriétaire 43.609 s), reprise à l'offset 104 : tx-00000313 pas encore écrit, lu par la nouvelle instance
+ Oracle : attendus=1500 présents=1500 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+ Doublons absorbés (audit) : 1
+ Rejets pour délai sur tout le flux : 0
+ Drainage terminé : oui
+------------------------------------------------------------------
+ VERDICT : REUSSITE
+==================================================================

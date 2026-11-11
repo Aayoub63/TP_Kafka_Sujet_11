@@ -1,0 +1,4 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261109-112700-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.092,0.67,502,45.137,1500,1,0,0,0,0,True,False,ECHEC,1 paiement(s) perdu(s)
+20261109-113113-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.095,0.663,460,45.102,1500,1,0,0,0,0,True,False,ECHEC,1 paiement(s) perdu(s)
+20261109-113523-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.1,0.674,453,45.101,1500,1,0,0,0,0,True,False,ECHEC,1 paiement(s) perdu(s)

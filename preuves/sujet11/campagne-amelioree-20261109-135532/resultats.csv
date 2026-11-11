@@ -1,0 +1,10 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261109-135533-amelioree-at_least_once-normale,at_least_once,normale,20,3000,0.969,0.987,8,1.323,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-135930-amelioree-at_most_once-normale,at_most_once,normale,20,3000,0.954,0.989,12,1.61,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-140326-amelioree-exactly_once_pg-normale,exactly_once_pg,normale,20,3000,0.938,0.981,8,1.353,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-140723-amelioree-at_least_once-normale,at_least_once,normale,20,3000,0.939,0.986,7,1.277,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-141120-amelioree-at_most_once-normale,at_most_once,normale,20,3000,0.98,0.985,6,1.369,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-141518-amelioree-exactly_once_pg-normale,exactly_once_pg,normale,20,3000,1.026,0.989,83,1.071,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-141904-amelioree-at_least_once-normale,at_least_once,normale,20,3000,0.964,0.986,29,1.002,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-142250-amelioree-at_most_once-normale,at_most_once,normale,20,3000,0.978,0.989,6,1.07,3000,0,0,0,0,0,True,True,REUSSITE,
+20261109-142651-amelioree-exactly_once_pg-normale,exactly_once_pg,normale,20,3000,0.976,0.989,29,1.028,3000,0,0,0,0,0,True,True,REUSSITE,
