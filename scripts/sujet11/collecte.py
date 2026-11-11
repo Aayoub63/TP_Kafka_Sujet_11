@@ -13,10 +13,16 @@ Usage : python3 scripts/sujet11/collecte.py <dossier-essai>
 """
 import json
 import os
+import re
 import subprocess
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import horloge  # noqa: E402
+
 TOPIC_VALIDATED = "simulpix.transactions.validated"
+# Valeurs comparées par l'oracle (mêmes noms dans le message et dans la table).
+CHAMPS = ("amount", "currency", "emitter_account_id", "beneficiary_account_id")
 
 
 def compose(*args, stdin=None):
@@ -52,18 +58,31 @@ def lire_topic_validated():
         "--topic", TOPIC_VALIDATED,
         "--from-beginning", "--timeout-ms", "15000",
         "--isolation-level", "read_committed",
+        "--property", "print.partition=true", "--property", "print.offset=true",
     )
-    messages = []
-    for ligne in r.stdout.splitlines():
-        ligne = ligne.strip()
-        if not ligne.startswith("{"):
-            continue
-        try:
-            m = json.loads(ligne)
-        except json.JSONDecodeError:
-            continue
-        messages.append({"transaction_id": m.get("transaction_id"), "amount": m.get("amount")})
-    return messages
+    messages = [lire_message(ligne) for ligne in r.stdout.splitlines()]
+    return [m for m in messages if m is not None]
+
+
+def lire_message(ligne):
+    """Une ligne « Partition:3<TAB>Offset:120<TAB>{...} » du console consumer.
+
+    La position (partition, offset) sert à savoir quel paiement était en cours
+    quand le consommateur s'est arrêté. Renvoie None pour une ligne sans JSON.
+    """
+    position = re.match(r"\s*Partition:(\d+)\s+Offset:(\d+)\s+(\{.*)", ligne)
+    texte = position.group(3) if position else ligne.strip()
+    if not texte.startswith("{"):
+        return None
+    try:
+        m = json.loads(texte)
+    except json.JSONDecodeError:
+        return None
+    return {"transaction_id": m.get("transaction_id"),
+            # seulement les champs présents : un champ absent n'est pas comparé
+            **{champ: m[champ] for champ in CHAMPS if champ in m},
+            "partition": int(position.group(1)) if position else None,
+            "offset": int(position.group(2)) if position else None}
 
 
 def main():
@@ -73,9 +92,15 @@ def main():
     dossier = os.path.join(sys.argv[1], "donnees")
     os.makedirs(dossier, exist_ok=True)
 
+    # L'audit est daté par PostgreSQL : on le ramène à l'horloge de la machine.
+    try:
+        meta = json.load(open(os.path.join(sys.argv[1], "meta.json")))
+    except OSError:
+        meta = {}
+    correction = horloge.decalage(meta)
     topic = lire_topic_validated()
-    valides = [{"transaction_id": t, "amount": a}
-               for t, a in psql("select transaction_id, amount from validated_transactions")]
+    valides = [dict(zip(("transaction_id", *CHAMPS), ligne))
+               for ligne in psql(f"select transaction_id, {', '.join(CHAMPS)} from validated_transactions")]
     rejetes = [{"transaction_id": t, "rejection_type": ty, "rejection_reason": re}
                for t, ty, re in psql(
                    "select coalesce(transaction_id, ''), rejection_type, rejection_reason "
@@ -83,9 +108,10 @@ def main():
     audit_present = psql("select to_regclass('public.tp_audit_attempts') is not null")[0][0] == "t"
     audit = []
     if audit_present:
-        audit = [{"transaction_id": t, "t": float(e)}
-                 for t, e in psql("select transaction_id, extract(epoch from attempted_at) "
-                                  "from tp_audit_attempts order by attempted_at, attempt_id")]
+        # kind : INSERT à chaque livraison, puis UPDATE si l'upsert trouve la ligne
+        audit = [{"transaction_id": t, "t": float(e) - correction, "kind": k}
+                 for t, e, k in psql("select transaction_id, extract(epoch from attempted_at), attempt_kind "
+                                     "from tp_audit_attempts order by attempted_at, attempt_id")]
 
     for nom, contenu in (("topic_validated", topic), ("db_validated", valides),
                          ("db_rejected", rejetes), ("audit", audit)):
