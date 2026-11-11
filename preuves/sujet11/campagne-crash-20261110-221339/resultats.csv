@@ -1,0 +1,7 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doubles_effets,trous,doublons_absorbes,rejets_delai_flux,drainage_termine,pause_distincte,sous_cible_metier,verdict,raisons
+20261110-221339-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.007,0.67,458,45.019,1500,0,0,0,0,0,1,0,True,True,False,REUSSITE,
+20261110-221754-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.1,0.668,459,45.3,1500,1,0,0,0,1,0,0,True,True,False,ECHEC,"1 paiement(s) perdu(s) ; 1 paiement(s) sans décision en base (ni validé, ni rejeté)"
+20261110-222207-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.004,0.673,454,44.468,1500,0,0,0,0,0,1,0,True,True,False,REUSSITE,
+20261110-222639-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.089,0.667,457,45.083,1500,1,0,0,0,1,0,0,True,True,False,ECHEC,"1 paiement(s) perdu(s) ; 1 paiement(s) sans décision en base (ni validé, ni rejeté)"
+20261110-223054-crash-at_least_once-ralentie,at_least_once,ralentie,10,1500,45.006,0.666,501,45.332,1500,0,0,0,0,0,1,0,True,True,False,REUSSITE,
+20261110-223511-crash-at_most_once-ralentie,at_most_once,ralentie,10,1500,45.018,0.661,458,45.12,1500,0,0,0,0,0,0,0,True,True,False,REUSSITE,

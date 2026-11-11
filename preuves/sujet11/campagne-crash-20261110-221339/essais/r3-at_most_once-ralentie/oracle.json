@@ -1,0 +1,37 @@
+{
+  "continuite": {
+    "attendus": 1500,
+    "messages_topic": 1500,
+    "classes": {
+      "present": 1500,
+      "valeur_fausse": 0,
+      "rejet_delai": 0,
+      "rejet_metier": 0,
+      "perdu": 0
+    },
+    "lignes_inattendues": 0,
+    "doubles_effets": 0,
+    "incoherents": 0,
+    "conflits_topic": 0,
+    "champs_compares": [
+      "amount",
+      "beneficiary_account_id",
+      "currency",
+      "emitter_account_id"
+    ],
+    "champs_faux": {},
+    "exemples": {}
+  },
+  "doublons": {
+    "audit_actif": true,
+    "tentatives": 1500,
+    "identites_ecrites": 1500,
+    "lignes_en_base": 1500,
+    "doublons_absorbes": 0,
+    "exemples": []
+  },
+  "flux": {
+    "rejets_total": 0,
+    "rejets_delai": 0
+  }
+}

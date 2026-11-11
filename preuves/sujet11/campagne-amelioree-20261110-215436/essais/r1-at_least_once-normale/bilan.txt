@@ -1,0 +1,34 @@
+==================================================================
+ BILAN SUJET 11 — mode=amelioree sémantique=at_least_once charge=normale
+==================================================================
+ Flux : 3000 Pix à 20 Pix/s demandés, 20.2 Pix/s mesurés, persister-valid arret-propre
+ Pause en base         : 0.967 s (borne 60 s, cible métier 10 s : atteinte)
+ Trou normal (référence): 0.986 s : AUCUNE pause mesurable au-delà du rythme normal du flux
+ Retard maximal        : 8 messages
+ Compteurs (topic validated / lignes en base / écart) :
+   avant la mise à jour : 618 / 618 / 0
+   pire moment : 817 / 796 / 21
+   après le flux : 3000 / 3000 / 0
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 5.811 | conteneur mort 6.559 | nouveau conteneur 1.157
+   signaux reçus par l'ancienne instance (instant, numéro) : [[5.811, '15']]
+   deux membres dans le groupe 5.283 | arrêt de l'ancienne demandé 5.653
+   aucune partition lue (groupe vide ou rebalance) 2.691 | partitions réattribuées 5.283 | lag à 0 5.283
+   dernière écriture 13.432 | première écriture après 14.399
+ Passations de partitions et message en cours :
+   5.283 s partition 0 : instance 1 -> instance 2 (sans propriétaire 2.592 s), reprise à l'offset 116 : tx-00000701 pas encore écrit, lu par la nouvelle instance
+   5.283 s partition 1 : instance 1 -> instance 2 (sans propriétaire 2.592 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   5.283 s partition 2 : instance 1 -> instance 2 (sans propriétaire 2.592 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   8.097 s partition 3 : instance 1 -> instance 2 (sans propriétaire 0.0 s), reprise à l'offset 132 (à une seconde près) : tx-00000794 déjà écrit avant et pas relu (offset relevé en retard)
+   8.097 s partition 4 : instance 1 -> instance 2 (sans propriétaire 0.0 s), reprise à l'offset 264 (à une seconde près) : tx-00000795 déjà écrit avant et pas relu (offset relevé en retard)
+   8.097 s partition 5 : instance 1 -> instance 2 (sans propriétaire 0.0 s), reprise à l'offset 263 (à une seconde près) : tx-00000792 déjà écrit avant et pas relu (offset relevé en retard)
+ Oracle : attendus=3000 présents=3000 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+   doubles effets=0 incohérents=0 conflits du topic=0 ; valeurs comparées : amount, beneficiary_account_id, currency, emitter_account_id
+ Trous de transaction_id en base : 0 sur 3000
+ Doublons absorbés (audit) : 0 (relectures sans second effet grâce à l'upsert)
+ Rejets pour délai sur tout le flux : 0
+ Retard résorbé (drainage) en moins de 120 s : oui
+ Horloge Docker - machine : décalage 0.065 s corrigé, dérive pendant l'essai 0.008 s
+------------------------------------------------------------------
+ VERDICT : REUSSITE
+==================================================================

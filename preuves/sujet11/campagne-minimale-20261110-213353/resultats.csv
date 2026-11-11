@@ -1,0 +1,6 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doubles_effets,trous,doublons_absorbes,rejets_delai_flux,drainage_termine,pause_distincte,sous_cible_metier,verdict,raisons
+20261110-213353-minimale-at_least_once-normale,at_least_once,normale,20,3000,3.425,0.99,110,3.001,3000,0,0,0,0,0,0,0,True,True,True,REUSSITE,
+20261110-213753-minimale-at_least_once-normale,at_least_once,normale,20,3000,3.425,0.991,124,4.068,3000,0,0,0,0,0,0,0,True,True,True,REUSSITE,
+20261110-214140-minimale-at_least_once-normale,at_least_once,normale,20,3000,3.404,0.99,99,3.053,3000,0,0,0,0,0,0,0,True,True,True,REUSSITE,
+20261110-214527-minimale-at_least_once-normale,at_least_once,normale,20,3000,3.624,0.988,101,2.681,3000,0,0,0,0,0,0,0,True,True,True,REUSSITE,
+20261110-214918-minimale-at_least_once-normale,at_least_once,normale,20,3000,3.719,0.987,128,3.909,3000,0,0,0,0,0,0,0,True,True,True,REUSSITE,

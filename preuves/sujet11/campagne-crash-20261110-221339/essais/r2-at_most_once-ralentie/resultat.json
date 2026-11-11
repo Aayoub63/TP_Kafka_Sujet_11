@@ -1,0 +1,248 @@
+{
+  "parametres": {
+    "mode": "crash",
+    "semantique": "at_most_once",
+    "charge": "ralentie",
+    "total": 1500,
+    "debit": 10,
+    "borne_s": 60,
+    "cible_metier_s": 10,
+    "drainage_max_s": 180,
+    "ralenti_ms": 80
+  },
+  "sous_cible_metier": false,
+  "pause": {
+    "ecritures": 1499,
+    "trou_normal_s": 0.667,
+    "pause_s": 45.089,
+    "reprise": true,
+    "derniere_ecriture_avant_s": 0.041,
+    "premiere_ecriture_apres_s": 45.131
+  },
+  "pause_distincte": true,
+  "retard_max_messages": 457,
+  "chronologie": {
+    "signal_arret_s": 0.065,
+    "signaux_recus": [
+      [
+        0.065,
+        "9"
+      ]
+    ],
+    "conteneur_mort_s": 0.172,
+    "nouveau_conteneur_s": 0.394,
+    "deux_membres_s": null,
+    "arret_ancien_demande_s": null,
+    "groupe_vide_s": 0.947,
+    "partitions_reattribuees_s": 46.03,
+    "lag_revenu_a_zero_s": 144.334,
+    "groupe_vide_duree_s": 45.083
+  },
+  "partitions": {
+    "instances": {
+      "instance 1": "rdkafka-4b0bd446-6183-4ef4-9d3e-62b5f51ba8a9",
+      "instance 2": "rdkafka-83dea885-4d34-4b29-8ff8-db46a98034c7"
+    },
+    "passations": [
+      {
+        "t_s": 46.03,
+        "partition": 0,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.083,
+        "offset_reprise": 55,
+        "offset_sur": true,
+        "message_repris": "tx-00000335",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000329",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 46.03,
+        "partition": 1,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.083,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 46.03,
+        "partition": 2,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.083,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 46.03,
+        "partition": 3,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.083,
+        "offset_reprise": 52,
+        "offset_sur": true,
+        "message_repris": "tx-00000314",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000308",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 46.03,
+        "partition": 4,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.083,
+        "offset_reprise": 104,
+        "offset_sur": true,
+        "message_repris": "tx-00000315",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000310",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 46.03,
+        "partition": 5,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.083,
+        "offset_reprise": 108,
+        "offset_sur": true,
+        "message_repris": "tx-00000325",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000324",
+        "precedent_ecrit": false
+      }
+    ]
+  },
+  "trous": {
+    "attendus": 1500,
+    "en_base": 1499,
+    "trous": 1,
+    "exemples": [
+      "tx-00000324"
+    ],
+    "hors_plage": []
+  },
+  "compteurs": {
+    "avant": {
+      "t": 1794346081.517,
+      "phase": "avant",
+      "generated": 333,
+      "validated_topic_end_offsets": 333,
+      "db_validated_count": 316,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 16,
+      "ecart_topic_base": 17
+    },
+    "pire": {
+      "t": 1794346141.387,
+      "phase": "pendant",
+      "generated": 953,
+      "validated_topic_end_offsets": 953,
+      "db_validated_count": 495,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 456,
+      "ecart_topic_base": 458
+    },
+    "apres": {
+      "t": 1794346234.47,
+      "phase": "apres",
+      "generated": 1500,
+      "validated_topic_end_offsets": 1500,
+      "db_validated_count": 1499,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 0,
+      "ecart_topic_base": 1
+    },
+    "debit_mesure": 9.8
+  },
+  "essai_officiel": true,
+  "charge_reelle": "ralentie (10 Pix/s, 80 ms entre lecture validée et écriture)",
+  "bornes_officielles": [
+    60,
+    180
+  ],
+  "drainage_termine": true,
+  "version_persister_valid": "arret-propre",
+  "oracle": {
+    "continuite": {
+      "attendus": 1500,
+      "messages_topic": 1500,
+      "classes": {
+        "present": 1499,
+        "valeur_fausse": 0,
+        "rejet_delai": 0,
+        "rejet_metier": 0,
+        "perdu": 1
+      },
+      "lignes_inattendues": 0,
+      "doubles_effets": 0,
+      "incoherents": 0,
+      "conflits_topic": 0,
+      "champs_compares": [
+        "amount",
+        "beneficiary_account_id",
+        "currency",
+        "emitter_account_id"
+      ],
+      "champs_faux": {},
+      "exemples": {
+        "perdu": [
+          "tx-00000324"
+        ]
+      }
+    },
+    "doublons": {
+      "audit_actif": true,
+      "tentatives": 1499,
+      "identites_ecrites": 1499,
+      "lignes_en_base": 1499,
+      "doublons_absorbes": 0,
+      "exemples": []
+    },
+    "flux": {
+      "rejets_total": 0,
+      "rejets_delai": 0
+    }
+  },
+  "horloge": {
+    "decalage_s": 0.036500000000000005,
+    "derive_s": 0.007,
+    "flux_termine": true
+  },
+  "anomalies": {
+    "integrite": [
+      "1 paiement(s) perdu(s)",
+      "1 paiement(s) sans décision en base (ni validé, ni rejeté)"
+    ],
+    "temps": [],
+    "mesure": {
+      "integrite": [],
+      "temps": [],
+      "scenario": []
+    },
+    "integrite_confirmee": true,
+    "temps_confirme": true
+  },
+  "verdict": "ECHEC",
+  "raisons": [
+    "1 paiement(s) perdu(s)",
+    "1 paiement(s) sans décision en base (ni validé, ni rejeté)"
+  ]
+}

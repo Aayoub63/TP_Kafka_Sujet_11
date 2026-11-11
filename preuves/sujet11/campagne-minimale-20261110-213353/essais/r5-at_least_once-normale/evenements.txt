@@ -1,0 +1,31 @@
+1794343849350273883 kill persister-valid 15
+1794343849824026175 stop persister-valid 
+1794343849827579800 die persister-valid 
+1794343849848629466 destroy persister-valid 
+1794343849855014800 rename persister-valid 
+1794343850017701050 start persister-valid 
+1794343858447515096 exec_create: python3 -c 
+import json, time, urllib.request
+# vaut None tant que le service démarre : on réessaie 30 s
+for _ in range(30):
+    try:
+        s = json.load(urllib.request.urlopen("http://127.0.0.1:8084/health", timeout=5)).get("consumer_semantics")
+    except OSError:
+        s = None
+    if s:
+        break
+    time.sleep(1)
+print(s or "inconnue") persister-valid 
+1794343858449189387 exec_start: python3 -c 
+import json, time, urllib.request
+# vaut None tant que le service démarre : on réessaie 30 s
+for _ in range(30):
+    try:
+        s = json.load(urllib.request.urlopen("http://127.0.0.1:8084/health", timeout=5)).get("consumer_semantics")
+    except OSError:
+        s = None
+    if s:
+        break
+    time.sleep(1)
+print(s or "inconnue") persister-valid 
+1794343858524347137 exec_die persister-valid 

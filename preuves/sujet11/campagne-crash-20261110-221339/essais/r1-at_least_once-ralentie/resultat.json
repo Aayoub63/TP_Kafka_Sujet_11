@@ -1,0 +1,238 @@
+{
+  "parametres": {
+    "mode": "crash",
+    "semantique": "at_least_once",
+    "charge": "ralentie",
+    "total": 1500,
+    "debit": 10,
+    "borne_s": 60,
+    "cible_metier_s": 10,
+    "drainage_max_s": 180,
+    "ralenti_ms": 80
+  },
+  "sous_cible_metier": false,
+  "pause": {
+    "ecritures": 1502,
+    "trou_normal_s": 0.67,
+    "pause_s": 45.007,
+    "reprise": true,
+    "derniere_ecriture_avant_s": 0.047,
+    "premiere_ecriture_apres_s": 45.053
+  },
+  "pause_distincte": true,
+  "retard_max_messages": 458,
+  "chronologie": {
+    "signal_arret_s": 0.079,
+    "signaux_recus": [
+      [
+        0.079,
+        "9"
+      ]
+    ],
+    "conteneur_mort_s": 0.183,
+    "nouveau_conteneur_s": 0.374,
+    "deux_membres_s": null,
+    "arret_ancien_demande_s": null,
+    "groupe_vide_s": 1.024,
+    "partitions_reattribuees_s": 46.043,
+    "lag_revenu_a_zero_s": 144.437,
+    "groupe_vide_duree_s": 45.019
+  },
+  "partitions": {
+    "instances": {
+      "instance 1": "rdkafka-30379173-5e35-4d60-8111-8d87d0fb0ad4",
+      "instance 2": "rdkafka-c6f25dfd-7cd2-4e9a-a6ad-001ee59bb78f"
+    },
+    "passations": [
+      {
+        "t_s": 46.043,
+        "partition": 0,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.019,
+        "offset_reprise": 55,
+        "offset_sur": true,
+        "message_repris": "tx-00000335",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000329",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 46.043,
+        "partition": 1,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.019,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 46.043,
+        "partition": 2,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.019,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 46.043,
+        "partition": 3,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.019,
+        "offset_reprise": 52,
+        "offset_sur": true,
+        "message_repris": "tx-00000314",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000308",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 46.043,
+        "partition": 4,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.019,
+        "offset_reprise": 104,
+        "offset_sur": true,
+        "message_repris": "tx-00000315",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000310",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 46.043,
+        "partition": 5,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.019,
+        "offset_reprise": 107,
+        "offset_sur": true,
+        "message_repris": "tx-00000324",
+        "deja_ecrit_avant": true,
+        "ecritures_du_message_repris": 2,
+        "message_precedent": "tx-00000319",
+        "precedent_ecrit": true
+      }
+    ]
+  },
+  "trous": {
+    "attendus": 1500,
+    "en_base": 1500,
+    "trous": 0,
+    "exemples": [],
+    "hors_plage": []
+  },
+  "compteurs": {
+    "avant": {
+      "t": 1794345301.909,
+      "phase": "avant",
+      "generated": 333,
+      "validated_topic_end_offsets": 333,
+      "db_validated_count": 316,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 17,
+      "ecart_topic_base": 17
+    },
+    "pire": {
+      "t": 1794345361.746,
+      "phase": "pendant",
+      "generated": 939,
+      "validated_topic_end_offsets": 939,
+      "db_validated_count": 484,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 456,
+      "ecart_topic_base": 455
+    },
+    "apres": {
+      "t": 1794345454.566,
+      "phase": "apres",
+      "generated": 1500,
+      "validated_topic_end_offsets": 1500,
+      "db_validated_count": 1500,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 0,
+      "ecart_topic_base": 0
+    },
+    "debit_mesure": 9.9
+  },
+  "essai_officiel": true,
+  "charge_reelle": "ralentie (10 Pix/s, 80 ms entre lecture validée et écriture)",
+  "bornes_officielles": [
+    60,
+    180
+  ],
+  "drainage_termine": true,
+  "version_persister_valid": "arret-propre",
+  "oracle": {
+    "continuite": {
+      "attendus": 1500,
+      "messages_topic": 1500,
+      "classes": {
+        "present": 1500,
+        "valeur_fausse": 0,
+        "rejet_delai": 0,
+        "rejet_metier": 0,
+        "perdu": 0
+      },
+      "lignes_inattendues": 0,
+      "doubles_effets": 0,
+      "incoherents": 0,
+      "conflits_topic": 0,
+      "champs_compares": [
+        "amount",
+        "beneficiary_account_id",
+        "currency",
+        "emitter_account_id"
+      ],
+      "champs_faux": {},
+      "exemples": {}
+    },
+    "doublons": {
+      "audit_actif": true,
+      "tentatives": 1501,
+      "identites_ecrites": 1500,
+      "lignes_en_base": 1500,
+      "doublons_absorbes": 1,
+      "exemples": [
+        "tx-00000324"
+      ]
+    },
+    "flux": {
+      "rejets_total": 0,
+      "rejets_delai": 0
+    }
+  },
+  "horloge": {
+    "decalage_s": 0.037000000000000005,
+    "derive_s": 0.008,
+    "flux_termine": true
+  },
+  "anomalies": {
+    "integrite": [],
+    "temps": [],
+    "mesure": {
+      "integrite": [],
+      "temps": [],
+      "scenario": []
+    },
+    "integrite_confirmee": true,
+    "temps_confirme": true
+  },
+  "verdict": "REUSSITE",
+  "raisons": []
+}

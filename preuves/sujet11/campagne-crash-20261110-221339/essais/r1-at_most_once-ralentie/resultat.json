@@ -1,0 +1,248 @@
+{
+  "parametres": {
+    "mode": "crash",
+    "semantique": "at_most_once",
+    "charge": "ralentie",
+    "total": 1500,
+    "debit": 10,
+    "borne_s": 60,
+    "cible_metier_s": 10,
+    "drainage_max_s": 180,
+    "ralenti_ms": 80
+  },
+  "sous_cible_metier": false,
+  "pause": {
+    "ecritures": 1499,
+    "trou_normal_s": 0.668,
+    "pause_s": 45.1,
+    "reprise": true,
+    "derniere_ecriture_avant_s": 0.009,
+    "premiere_ecriture_apres_s": 45.109
+  },
+  "pause_distincte": true,
+  "retard_max_messages": 459,
+  "chronologie": {
+    "signal_arret_s": 0.07,
+    "signaux_recus": [
+      [
+        0.07,
+        "9"
+      ]
+    ],
+    "conteneur_mort_s": 0.154,
+    "nouveau_conteneur_s": 0.351,
+    "deux_membres_s": null,
+    "arret_ancien_demande_s": null,
+    "groupe_vide_s": 0.986,
+    "partitions_reattribuees_s": 46.286,
+    "lag_revenu_a_zero_s": 144.865,
+    "groupe_vide_duree_s": 45.3
+  },
+  "partitions": {
+    "instances": {
+      "instance 1": "rdkafka-ef414856-6b72-455e-9bce-81d690c585b1",
+      "instance 2": "rdkafka-9b499211-ffbd-4551-bad3-1e12405c625d"
+    },
+    "passations": [
+      {
+        "t_s": 46.286,
+        "partition": 0,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.3,
+        "offset_reprise": 52,
+        "offset_sur": true,
+        "message_repris": "tx-00000317",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000311",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 46.286,
+        "partition": 1,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.3,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 46.286,
+        "partition": 2,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.3,
+        "offset_reprise": null,
+        "offset_sur": true,
+        "message_repris": null,
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 0,
+        "message_precedent": null,
+        "precedent_ecrit": null
+      },
+      {
+        "t_s": 46.286,
+        "partition": 3,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.3,
+        "offset_reprise": 52,
+        "offset_sur": true,
+        "message_repris": "tx-00000314",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000308",
+        "precedent_ecrit": true
+      },
+      {
+        "t_s": 46.286,
+        "partition": 4,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.3,
+        "offset_reprise": 103,
+        "offset_sur": true,
+        "message_repris": "tx-00000310",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000309",
+        "precedent_ecrit": false
+      },
+      {
+        "t_s": 46.286,
+        "partition": 5,
+        "avant": "instance 1",
+        "apres": "instance 2",
+        "sans_proprietaire_s": 45.3,
+        "offset_reprise": 104,
+        "offset_sur": true,
+        "message_repris": "tx-00000313",
+        "deja_ecrit_avant": false,
+        "ecritures_du_message_repris": 1,
+        "message_precedent": "tx-00000312",
+        "precedent_ecrit": true
+      }
+    ]
+  },
+  "trous": {
+    "attendus": 1500,
+    "en_base": 1499,
+    "trous": 1,
+    "exemples": [
+      "tx-00000309"
+    ],
+    "hors_plage": []
+  },
+  "compteurs": {
+    "avant": {
+      "t": 1794345555.761,
+      "phase": "avant",
+      "generated": 312,
+      "validated_topic_end_offsets": 312,
+      "db_validated_count": 308,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 3,
+      "ecart_topic_base": 4
+    },
+    "pire": {
+      "t": 1794345599.892,
+      "phase": "pendant",
+      "generated": 763,
+      "validated_topic_end_offsets": 763,
+      "db_validated_count": 310,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 452,
+      "ecart_topic_base": 453
+    },
+    "apres": {
+      "t": 1794345707.883,
+      "phase": "apres",
+      "generated": 1500,
+      "validated_topic_end_offsets": 1500,
+      "db_validated_count": 1499,
+      "db_rejected_count": 0,
+      "persister_valid_lag_total": 0,
+      "ecart_topic_base": 1
+    },
+    "debit_mesure": 10.1
+  },
+  "essai_officiel": true,
+  "charge_reelle": "ralentie (10 Pix/s, 80 ms entre lecture validée et écriture)",
+  "bornes_officielles": [
+    60,
+    180
+  ],
+  "drainage_termine": true,
+  "version_persister_valid": "arret-propre",
+  "oracle": {
+    "continuite": {
+      "attendus": 1500,
+      "messages_topic": 1500,
+      "classes": {
+        "present": 1499,
+        "valeur_fausse": 0,
+        "rejet_delai": 0,
+        "rejet_metier": 0,
+        "perdu": 1
+      },
+      "lignes_inattendues": 0,
+      "doubles_effets": 0,
+      "incoherents": 0,
+      "conflits_topic": 0,
+      "champs_compares": [
+        "amount",
+        "beneficiary_account_id",
+        "currency",
+        "emitter_account_id"
+      ],
+      "champs_faux": {},
+      "exemples": {
+        "perdu": [
+          "tx-00000309"
+        ]
+      }
+    },
+    "doublons": {
+      "audit_actif": true,
+      "tentatives": 1499,
+      "identites_ecrites": 1499,
+      "lignes_en_base": 1499,
+      "doublons_absorbes": 0,
+      "exemples": []
+    },
+    "flux": {
+      "rejets_total": 0,
+      "rejets_delai": 0
+    }
+  },
+  "horloge": {
+    "decalage_s": 0.032,
+    "derive_s": 0.002,
+    "flux_termine": true
+  },
+  "anomalies": {
+    "integrite": [
+      "1 paiement(s) perdu(s)",
+      "1 paiement(s) sans décision en base (ni validé, ni rejeté)"
+    ],
+    "temps": [],
+    "mesure": {
+      "integrite": [],
+      "temps": [],
+      "scenario": []
+    },
+    "integrite_confirmee": true,
+    "temps_confirme": true
+  },
+  "verdict": "ECHEC",
+  "raisons": [
+    "1 paiement(s) perdu(s)",
+    "1 paiement(s) sans décision en base (ni validé, ni rejeté)"
+  ]
+}
