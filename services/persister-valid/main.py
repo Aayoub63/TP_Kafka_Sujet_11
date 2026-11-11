@@ -24,7 +24,7 @@ STATE: dict[str, Any] = {
 }
 
 
-ALLOWED_CONSUMER_SEMANTICS = {"at_most_once", "at_least_once", "custom"}
+ALLOWED_CONSUMER_SEMANTICS = {"at_most_once", "at_least_once", "custom", "exactly_once_pg"}
 
 
 def get_consumer_semantics() -> str:
@@ -51,6 +51,12 @@ def get_consumer_settings() -> dict[str, Any]:
         commit_strategy = "before"
         commit_batch_size = 1
     elif semantics == "at_least_once":
+        auto_commit = False
+        commit_strategy = "after"
+        commit_batch_size = 1
+    elif semantics == "exactly_once_pg":
+        # Mêmes réglages que at_least_once : le commit Kafka reste fait après
+        # l'écriture, mais la référence est la table des offsets de PostgreSQL.
         auto_commit = False
         commit_strategy = "after"
         commit_batch_size = 1
@@ -166,12 +172,30 @@ def ensure_validated_schema(connection: psycopg.Connection) -> None:
     connection.commit()
 
 
-def insert_validated(connection: psycopg.Connection, message: dict[str, Any]) -> int:
+def ensure_offsets_table(connection: psycopg.Connection) -> None:
+    # Table des offsets pour exactly_once_pg : rangée dans PostgreSQL, dans la
+    # même transaction que l'écriture du paiement.
+    with connection.cursor() as cursor:
+        cursor.execute(
+            """
+            create table if not exists persister_offsets (
+              group_id text,
+              topic text,
+              partition integer,
+              next_offset bigint not null,
+              primary key (group_id, topic, partition)
+            )
+            """
+        )
+    connection.commit()
+
+
+def upsert_validated(cursor, message: dict[str, Any]) -> None:
+    # Écriture du paiement sans commit : la transaction est pilotée par l'appelant.
     enriched_message = dict(message)
     enriched_message.setdefault("source_transaction_id", message.get("transaction_id"))
     enriched_message.setdefault("retry_attempt", 0)
-    with connection.cursor() as cursor:
-        cursor.execute(
+    cursor.execute(
             """
             insert into validated_transactions (
               transaction_id,
@@ -263,8 +287,41 @@ def insert_validated(connection: psycopg.Connection, message: dict[str, Any]) ->
             """,
             enriched_message,
         )
+
+
+def insert_validated(connection: psycopg.Connection, message: dict[str, Any]) -> int:
+    with connection.cursor() as cursor:
+        upsert_validated(cursor, message)
     connection.commit()
     return load_existing_persisted_count(connection)
+
+
+def apply_exactly_once(connection: psycopg.Connection, message: dict[str, Any], group_id: str, topic: str, partition: int, offset: int) -> bool:
+    # Une seule transaction : lecture de l'offset, écriture du paiement et
+    # rangement de l'offset avancent ensemble, ou pas du tout.
+    with connection.cursor() as cursor:
+        cursor.execute(
+            "select next_offset from persister_offsets where group_id=%s and topic=%s and partition=%s for update",
+            (group_id, topic, partition),
+        )
+        row = cursor.fetchone()
+        if row is not None and offset < int(row[0]):
+            # Message déjà appliqué : on n'écrit rien.
+            connection.commit()
+            return False
+        upsert_validated(cursor, message)
+        # L'offset rangé ne peut qu'avancer : la clause where écarte un retour en arrière.
+        cursor.execute(
+            """
+            insert into persister_offsets (group_id, topic, partition, next_offset)
+            values (%s, %s, %s, %s)
+            on conflict (group_id, topic, partition) do update set next_offset = excluded.next_offset
+            where excluded.next_offset > persister_offsets.next_offset
+            """,
+            (group_id, topic, partition, offset + 1),
+        )
+    connection.commit()
+    return True
 
 
 def should_crash_after_insert_before_commit(connection: psycopg.Connection, transaction_id: str | None) -> bool:
@@ -363,6 +420,7 @@ def main() -> int:
     threading.Thread(target=serve_http, daemon=True).start()
     connection, consumer = wait_for_dependencies(database_url, bootstrap_servers, group_id, topic)
     ensure_validated_schema(connection)
+    ensure_offsets_table(connection)
     STATE["persisted"] = load_existing_persisted_count(connection)
     STATE["status"] = "running"
     consumer_settings = get_consumer_settings()
@@ -395,7 +453,13 @@ def main() -> int:
                 consumer.commit(message=record, asynchronous=False)
                 if persist_delay_seconds > 0:
                     time.sleep(persist_delay_seconds)
-            STATE["persisted"] = insert_validated(connection, message)
+            if consumer_semantics == "exactly_once_pg":
+                applied = apply_exactly_once(connection, message, group_id, record.topic(), record.partition(), record.offset())
+                STATE["persisted"] = load_existing_persisted_count(connection)
+                if not applied:
+                    print(json.dumps({"event": "skipped_already_applied", "transaction_id": message.get("transaction_id")}), flush=True)
+            else:
+                STATE["persisted"] = insert_validated(connection, message)
             if not consumer_settings["auto_commit"] and consumer_settings["commit_strategy"] == "after":
                 if should_crash_after_insert_before_commit(connection, message.get("transaction_id")):
                     os._exit(137)
@@ -428,6 +492,7 @@ def main() -> int:
                 pass
             connection, consumer = wait_for_dependencies(database_url, bootstrap_servers, group_id, topic)
             ensure_validated_schema(connection)
+            ensure_offsets_table(connection)
             STATE["persisted"] = load_existing_persisted_count(connection)
             STATE["status"] = "running"
             consumer_settings = get_consumer_settings()
