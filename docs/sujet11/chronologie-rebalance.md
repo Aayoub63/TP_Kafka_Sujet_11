@@ -37,8 +37,10 @@ un relevé par seconde), table d'audit (PostgreSQL).
 La dernière écriture (+5,03 s) est datée 0,3 s après la mort de l'ancien
 conteneur (+4,73 s). Nous n'expliquons pas encore cet écart. t0 vient de
 l'horloge du Mac, alors que Docker et PostgreSQL tournent dans la machine
-virtuelle de Docker Desktop. Une différence d'horloge est possible, mais nous
-ne l'avons pas mesurée. Cet écart ne change pas l'ordre de grandeur de la pause.
+virtuelle de Docker Desktop. Une différence d'horloge est possible. Depuis le
+9 novembre, elle est mesurée au début et à la fin de chaque essai
+(`scripts/sujet11/horloge.py`) et corrigée ; un essai dont l'horloge dérive de
+plus de 0,5 s est INVALIDE. Cet écart ne change pas l'ordre de grandeur de la pause.
 
 Résultat : **pause de 43,954 s**, retard maximal de **883 messages**, trou
 normal avant la mise à jour de 0,992 s. Oracle : 3000 attendus, 3000 présents,
