@@ -15,6 +15,10 @@ from scenario_control import (
     is_scenario_port,
     read_form_value,
 )
+from sujet11_etat import essai_en_cours, rendre_etat
+from sujet11_synthese import rendre_synthese
+from sujet11_pilotage import (arreter, autoriser, lire_utilisateur, rendre_pilotage, rendre_statut,
+                              reprise_au_demarrage, traduire_scenario)
 from views_dashboard import render_dashboard_html
 from views_scenario import render_scenario_html as render_scenario_view
 
@@ -84,6 +88,55 @@ class Handler(BaseHTTPRequestHandler):
         route = urlsplit(self.path).path
         query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
         current_port = int(self.server.server_address[1])
+        if route in ("/sujet11/pilotage", "/sujet11/pilotage/statut"):
+            # Contrôle des scénarios expérimentaux (cadre du tableau de bord Grafana).
+            workspace = os.getenv("SIMULPIX_WORKSPACE_DIR", "/workspace")
+            utilisateur = lire_utilisateur(self.headers.get("Cookie", ""))
+            if route == "/sujet11/pilotage":
+                page = rendre_pilotage(workspace, utilisateur, read_form_value(query, "message", ""),
+                                       read_form_value(query, "genre", ""))
+            else:
+                try:
+                    services = build_health_payload().get("services")
+                except Exception:
+                    services = None
+                page = rendre_statut(workspace, utilisateur, services)
+            corps = page.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Content-Length", str(len(corps)))
+            self.end_headers()
+            self.wfile.write(corps)
+            return
+        if route == "/sujet11/synthese":
+            # Cadres « Vue d'ensemble », « Déroulement » et « Intégrité » du tableau de bord.
+            workspace = os.getenv("SIMULPIX_WORKSPACE_DIR", "/workspace")
+            page = rendre_synthese(read_form_value(query, "vue", "ensemble"), workspace,
+                                   essai_en_cours(workspace), read_form_value(query, "essai", "")).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Content-Length", str(len(page)))
+            self.end_headers()
+            self.wfile.write(page)
+            return
+        if route == "/sujet11/etat":
+            # Cadre du panneau « Pilotage » de Grafana (sujet 11).
+            page = rendre_etat(
+                essai_en_cours(os.getenv("SIMULPIX_WORKSPACE_DIR", "/workspace")),
+                resultat=read_form_value(query, "resultat", ""),
+                mode=read_form_value(query, "mode", ""),
+                semantique=read_form_value(query, "semantique", ""),
+                charge=read_form_value(query, "charge", ""),
+            ).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Content-Length", str(len(page)))
+            self.end_headers()
+            self.wfile.write(page)
+            return
         allowed_routes = {"/", "/ui", "/scenario", "/health", "/health/services", "/health/details"}
         if route not in allowed_routes:
             self.send_response(404)
@@ -158,6 +211,12 @@ class Handler(BaseHTTPRequestHandler):
             content_length = int(self.headers.get("Content-Length", "0"))
             body = self.rfile.read(content_length).decode("utf-8")
             form = parse_qs(body, keep_blank_values=True)
+            action = read_form_value(form, "action", "")
+            if action.startswith("sujet11_"):
+                # Sujet 11 : origine, session Grafana (Editor ou Admin) et confirmation
+                # sont vérifiées pour toute demande, d'où qu'elle vienne.
+                self._sujet11(action, form)
+                return
             result, action_label = execute_control_action(form)
         except Exception as exc:
             CONTROL_STATE["status"] = "error"
@@ -169,6 +228,18 @@ class Handler(BaseHTTPRequestHandler):
             form = {}
         scenario = read_form_value(form, "scenario", "")
         return_view = read_form_value(form, "return_view", "")
+        if return_view == "sujet11":
+            # Le formulaire Grafana vise le cadre de l'état : on y affiche le résultat du clic.
+            query = urlencode({
+                "resultat": result,
+                "mode": read_form_value(form, "mode", ""),
+                "semantique": read_form_value(form, "semantique", ""),
+                "charge": read_form_value(form, "charge", ""),
+            })
+            self.send_response(303)
+            self.send_header("Location", "/sujet11/etat?" + query)
+            self.end_headers()
+            return
         if return_view == "scenario":
             query = urlencode(
                 {
@@ -210,6 +281,35 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Location", target)
         self.end_headers()
 
+    def _sujet11(self, action: str, form: dict) -> None:
+        workspace = os.getenv("SIMULPIX_WORKSPACE_DIR", "/workspace")
+        ok, message = traduire_scenario(form)
+        utilisateur = None
+        if ok:
+            ok, message, utilisateur = autoriser(action, form, {k: v for k, v in self.headers.items()})
+        if ok and action == "sujet11_arreter":
+            resultat, message = arreter(workspace)
+            genre = "info" if resultat == "stop" else "erreur"
+        elif ok and action == "sujet11_essai":
+            form["_qui"] = [utilisateur["login"]]
+            resultat, _ = execute_control_action(form)
+            message, genre = {
+                "accepted": ("Essai lancé. Le suivi apparaît à droite dans quelques secondes.", "ok"),
+                "busy": ("Refusé : un essai est déjà en cours. Attendez sa fin.", "erreur"),
+            }.get(resultat, ("Refusé : paramètres non acceptés ou erreur au lancement.", "erreur"))
+        elif ok:
+            message, genre = "Refusé : action inconnue.", "erreur"
+        else:
+            genre = "erreur"
+        if read_form_value(form, "return_view", "") == "sujet11":
+            # ancien formulaire du tableau de bord : réponse dans le petit cadre d'état
+            cible = "/sujet11/etat?" + urlencode({"resultat": "accepted" if genre == "ok" else "error"})
+        else:
+            cible = "/sujet11/pilotage?" + urlencode({"message": message, "genre": genre})
+        self.send_response(303)
+        self.send_header("Location", cible)
+        self.end_headers()
+
     def log_message(self, format: str, *args: Any) -> None:
         return
 
@@ -218,6 +318,10 @@ def main() -> int:
     port = int(os.getenv("SIMULPIX_PORT", "8082"))
     scenario_port = int(os.getenv("SIMULPIX_SCENARIO_PORT", "8083"))
     threading.Thread(target=emit_periodic_health_logs, daemon=True).start()
+    # Un essai lancé par ce service avant un redémarrage n'a pas pu finir : on le dit.
+    repris = reprise_au_demarrage(os.getenv("SIMULPIX_WORKSPACE_DIR", "/workspace"))
+    if repris:
+        print(json.dumps({"event": "sujet11_essai_interrompu_par_redemarrage", "sortie": repris}), flush=True)
     if scenario_port != port:
         threading.Thread(
             target=lambda: ThreadingHTTPServer(("0.0.0.0", scenario_port), Handler).serve_forever(),

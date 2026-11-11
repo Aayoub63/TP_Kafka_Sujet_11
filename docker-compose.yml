@@ -630,9 +630,11 @@ services:
       SIMULPIX_WORKSPACE_DIR: ${PWD}
       COMPOSE_PROJECT_NAME: simulpix
       SIMULPIX_PROCESSING_ARCH: ${SIMULPIX_PROCESSING_ARCH:-split}
+    # Sujet 11 : localhost seulement. Le pilotage lance des essais (il vide les tables et
+    # recrée les topics) : il ne doit pas être joignable depuis une autre machine.
     ports:
-      - "8082:8082"
-      - "8083:8083"
+      - "127.0.0.1:8082:8082"
+      - "127.0.0.1:8083:8083"
     volumes:
       - ./runtime:/runtime:ro
       - ${PWD}:${PWD}

@@ -4,11 +4,13 @@ import json
 import os
 import subprocess
 import threading
+import time
 import urllib.request
 from datetime import datetime, timezone
 from typing import Any
 
 from app_state import CONTROL_LOCK, CONTROL_STATE
+from sujet11_etat import essai_en_cours
 from config import (
     ALLOWED_CONSUMER_SEMANTICS,
     ALLOWED_PRODUCER_SEMANTICS,
@@ -101,6 +103,36 @@ def build_control_job(form: dict[str, list[str]]) -> tuple[bool, str, list[str] 
 
     if action == "reset_network_profile":
         return True, "reset_network_profile", ["/bin/sh", "./scripts/network-reset.sh"], None
+
+    if action == "sujet11_essai":
+        # Sujet 11 : mise à jour de persister-valid sous flux, lancée depuis Grafana.
+        mode = read_form_value(form, "mode", "minimale").strip()
+        semantique = read_form_value(form, "semantique", "at_least_once").strip()
+        charge = read_form_value(form, "charge", "normale").strip()
+        if mode not in {"observee", "minimale", "amelioree", "crash"} or semantique not in {"at_least_once", "at_most_once", "exactly_once_pg"} \
+                or charge not in {"normale", "forte"}:
+            CONTROL_STATE["status"] = "error"
+            CONTROL_STATE["last_result"] = "error"
+            CONTROL_STATE["last_output"] = [f"sujet11 : paramètres refusés ({mode}, {semantique}, {charge})"]
+            return False, "sujet11_parametres_refuses", None, None
+        # Débits de la campagne : 20 Pix/s en charge normale, 60 Pix/s en forte charge.
+        debit_defaut = "60" if charge == "forte" else "20"
+        debit = str(sanitize_positive_int(read_form_value(form, "debit", debit_defaut) or debit_defaut,
+                                          int(debit_defaut), 1, 200))
+        borne = str(sanitize_positive_int(read_form_value(form, "borne", "60"), 60, 1, 600))
+        command = ["/bin/sh", "./scripts/sujet11-maj.sh", "--mode", mode, "--semantique", semantique,
+                   "--charge", charge, "--debit", debit, "--borne", borne]
+        if mode == "crash":
+            # Panne : réglage fixe, celui du protocole. 80 ms entre commit et écriture
+            # pour que le SIGKILL tombe dans la fenêtre ; à 80 ms par message
+            # l'instance traite environ 12 Pix/s, d'où 10 Pix/s et 180 s de drainage.
+            charge = "ralentie"
+            command = ["/bin/sh", "./scripts/sujet11-maj.sh", "--mode", mode, "--semantique", semantique,
+                       "--charge", charge, "--debit", "10", "--ralenti", "80",
+                       "--drainage-max", "180", "--borne", borne]
+        # Un essai dure environ 5 min : plus que la limite par défaut des actions (240 s).
+        extra_env = {"SUJET11_INFLUX_URL": "http://influxdb:8086", "SIMULPIX_CONTROL_TIMEOUT_SECONDS": "900"}
+        return True, f"sujet11_essai:{mode}:{semantique}:{charge}", command, extra_env
 
     if action == "run_scenario":
         scenario = read_form_value(form, "scenario", "nominal")
@@ -209,7 +241,7 @@ def run_control_command(command: list[str], workdir: str, extra_env: dict[str, s
             env=env,
             capture_output=True,
             text=True,
-            timeout=240,
+            timeout=int(env.get("SIMULPIX_CONTROL_TIMEOUT_SECONDS", "240")),
             check=False,
         )
         lines = [line for line in (completed.stdout + "\n" + completed.stderr).splitlines() if line.strip()]
@@ -256,6 +288,17 @@ def _apply_traffic_shaper_update(rate: str, traffic_model: str) -> tuple[bool, l
 def execute_control_action(form: dict[str, list[str]]) -> tuple[str, str]:
     action = read_form_value(form, "action", "")
 
+    if action == "sujet11_essai":
+        # Refus avant tout lancement si un essai tient le verrou, qu'il vienne
+        # d'un bouton ou du terminal : le script le refuserait de toute façon.
+        en_cours = essai_en_cours(os.getenv("SIMULPIX_WORKSPACE_DIR", "/workspace"))
+        if en_cours is not None:
+            CONTROL_STATE["status"] = "busy"
+            CONTROL_STATE["last_result"] = "busy"
+            CONTROL_STATE["busy_message"] = f"essai en cours : {en_cours['id']}"
+            CONTROL_STATE["last_output"] = [f"[sujet11] un autre essai est en cours ({en_cours['id']})"]
+            return "busy", "sujet11_occupe"
+
     if action == "update_scenario":
         raw_rate = read_form_value(form, "rate_per_second", "").strip()
         raw_model = read_form_value(form, "traffic_model", "").strip()
@@ -292,11 +335,28 @@ def execute_control_action(form: dict[str, list[str]]) -> tuple[str, str]:
 
     def worker() -> None:
         try:
-            run_control_command(
-                command,
-                workspace,
-                {"SIMULPIX_KEEP_HEALTH_RUNNING": "1"} | (extra_env or {}),
-            )
+            if action_label.startswith("sujet11_essai"):
+                # Sujet 11 : exécution arrêtable proprement, avec journal et historique
+                # (sujet11_pilotage.py). Même commande, même liste blanche.
+                from sujet11_pilotage import executer_essai
+                env = os.environ.copy() | {"SIMULPIX_KEEP_HEALTH_RUNNING": "1"} | (extra_env or {})
+                contexte = {"lancement": time.strftime("%Y%m%d-%H%M%S"), "qui": read_form_value(form, "_qui", "?"),
+                            "scenario": read_form_value(form, "scenario", read_form_value(form, "mode", "")),
+                            "semantique": read_form_value(form, "semantique", ""),
+                            "charge": read_form_value(form, "charge", "")}
+                CONTROL_STATE["last_started_at"] = utc_now_iso()
+                ok, sortie = executer_essai(command, workspace, env, workspace, contexte,
+                                            int(env.get("SIMULPIX_CONTROL_TIMEOUT_SECONDS", "900")))
+                CONTROL_STATE["status"] = CONTROL_STATE["last_result"] = "ok" if ok else "error"
+                CONTROL_STATE["last_output"] = sortie
+                CONTROL_STATE["last_finished_at"] = utc_now_iso()
+                CONTROL_STATE["busy_message"] = None
+            else:
+                run_control_command(
+                    command,
+                    workspace,
+                    {"SIMULPIX_KEEP_HEALTH_RUNNING": "1"} | (extra_env or {}),
+                )
         finally:
             CONTROL_LOCK.release()
 
