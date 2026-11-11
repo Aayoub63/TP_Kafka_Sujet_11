@@ -160,6 +160,10 @@ services:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: adminpass
       GF_USERS_ALLOW_SIGN_UP: "false"
+      # Sujet 11 : autorise le formulaire HTML du panneau « Pilotage » (boutons
+      # qui lancent les essais via service-health). Acceptable pour une
+      # plateforme locale de TP ; à ne pas reprendre sur un Grafana exposé.
+      GF_PANELS_DISABLE_SANITIZE_HTML: "true"
     volumes:
       - grafana_data:/var/lib/grafana
       - ./infra/observability/grafana/provisioning:/etc/grafana/provisioning:ro
@@ -509,6 +513,18 @@ services:
       SIMULPIX_KAFKA_COMMIT_BATCH_SIZE: ${SIMULPIX_KAFKA_COMMIT_BATCH_SIZE:-1}
     expose:
       - "8084"
+
+  # Sujet 11, solution améliorée : seconde instance de persister-valid, dans le
+  # même groupe (même env_file runtime/current-run.env). Démarrée seulement avec
+  # le profil « roulant » : la plateforme par défaut garde une instance.
+  persister-valid-b:
+    extends:
+      service: persister-valid
+    container_name: persister-valid-b
+    profiles:
+      - roulant
+    environment:
+      SIMULPIX_SERVICE_NAME: persister-valid-b
 
   persister-rejected:
     build:
