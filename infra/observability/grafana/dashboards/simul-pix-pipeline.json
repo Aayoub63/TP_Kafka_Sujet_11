@@ -28,7 +28,14 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Pix \u00e9mis"
+                "value": "Pix émis"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
               }
             ]
           },
@@ -40,7 +47,14 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Pix avec d\u00e9cision"
+                "value": "Pix avec décision"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "purple"
+                }
               }
             ]
           },
@@ -53,6 +67,13 @@
               {
                 "id": "displayName",
                 "value": "pix acceptes"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "green"
+                }
               }
             ]
           },
@@ -65,6 +86,13 @@
               {
                 "id": "displayName",
                 "value": "pix rejetes"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
               }
             ]
           },
@@ -76,7 +104,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "R\u00e9ponses finales"
+                "value": "Réponses finales"
               }
             ]
           }
@@ -108,7 +136,7 @@
           "refId": "A"
         }
       ],
-      "title": "Volumes cumul\u00e9s du pipeline Pix",
+      "title": "Volumes cumulés du pipeline Pix : émis (bleu), acceptés (vert), rejetés (rouge)",
       "type": "timeseries"
     },
     {
@@ -132,7 +160,14 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Pix \u00e9mis / s"
+                "value": "Pix émis / s"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
               }
             ]
           },
@@ -144,7 +179,14 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "pix acceptes / s"
+                "value": "Pix acceptés / s"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "green"
+                }
               }
             ]
           },
@@ -156,7 +198,14 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "pix rejetes / s"
+                "value": "Pix rejetés / s"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
               }
             ]
           }
@@ -188,7 +237,7 @@
           "refId": "A"
         }
       ],
-      "title": "D\u00e9bits du pipeline Pix (msg/s)",
+      "title": "Débits du pipeline Pix (msg/s) : émis (bleu), acceptés (vert), rejetés (rouge)",
       "type": "timeseries"
     },
     {
@@ -212,7 +261,14 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Pix accept\u00e9s / s"
+                "value": "Pix acceptés / s"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "green"
+                }
               }
             ]
           },
@@ -224,7 +280,14 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Pix rejet\u00e9s / s"
+                "value": "Pix rejetés / s"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
               }
             ]
           }
@@ -240,7 +303,7 @@
       "options": {
         "legend": {
           "displayMode": "list",
-          "showLegend": false,
+          "showLegend": true,
           "placement": "bottom"
         },
         "tooltip": {
@@ -257,8 +320,8 @@
           "refId": "A"
         }
       ],
-      "description": "Courbes d\u00e9di\u00e9es pour suivre s\u00e9par\u00e9ment les Pix accept\u00e9s par seconde et les Pix rejet\u00e9s par seconde, quelle que soit l'origine du rejet.",
-      "title": "Pix accept\u00e9s ou rejet\u00e9s / s",
+      "description": "Courbes dédiées pour suivre séparément les Pix acceptés par seconde et les Pix rejetés par seconde, quelle que soit l'origine du rejet.",
+      "title": "Pix acceptés (vert) ou rejetés (rouge) / s",
       "type": "timeseries"
     },
     {
@@ -314,7 +377,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "fixed",
+            "fixedColor": "red"
           },
           "unit": "ops"
         },
@@ -330,7 +394,7 @@
       "options": {
         "legend": {
           "displayMode": "list",
-          "showLegend": false,
+          "showLegend": true,
           "placement": "bottom"
         },
         "tooltip": {
@@ -347,8 +411,8 @@
           "refId": "A"
         }
       ],
-      "description": "Rythme des Pix qui d\u00e9passent le TTL et sont ensuite rejet\u00e9s pour d\u00e9passement du d\u00e9lai de d\u00e9cision.",
-      "title": "Pix rejet\u00e9s pour d\u00e9passement du TTL / s",
+      "description": "Rythme des Pix qui dépassent le TTL et sont ensuite rejetés pour dépassement du délai de décision.",
+      "title": "Pix rejetés pour dépassement du TTL / s (rouge)",
       "type": "timeseries"
     },
     {
@@ -401,22 +465,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Volume produit sur les 5 derni\u00e8res minutes.",
+      "description": "Volume produit sur les 5 dernières minutes.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "blue"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -455,7 +516,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix \u00e9mis - 5 min",
+      "title": "Pix émis - 5 min",
       "type": "stat"
     },
     {
@@ -463,22 +524,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Volume \u00e9mis sur les 5 derni\u00e8res minutes.",
+      "description": "Volume émis sur les 5 dernières minutes.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "blue"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -517,7 +575,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix trait\u00e9s - 5 min",
+      "title": "Pix traités - 5 min",
       "type": "stat"
     },
     {
@@ -525,11 +583,12 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Volume sur les 5 derni\u00e8res minutes.",
+      "description": "Volume sur les 5 dernières minutes.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "green"
           },
           "thresholds": {
             "mode": "absolute",
@@ -537,10 +596,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -579,7 +634,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix accept\u00e9s - 5 min",
+      "title": "Pix acceptés - 5 min",
       "type": "stat"
     },
     {
@@ -587,22 +642,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Volume sur les 5 derni\u00e8res minutes.",
+      "description": "Volume sur les 5 dernières minutes.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "red"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -641,7 +693,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix rejet\u00e9s - 5 min",
+      "title": "Pix rejetés - 5 min",
       "type": "stat"
     },
     {
@@ -649,22 +701,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Volume produit sur les 30 derni\u00e8res minutes.",
+      "description": "Volume produit sur les 30 dernières minutes.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "blue"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -703,7 +752,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix \u00e9mis - 30 min",
+      "title": "Pix émis - 30 min",
       "type": "stat"
     },
     {
@@ -711,22 +760,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Volume \u00e9mis sur les 30 derni\u00e8res minutes.",
+      "description": "Volume émis sur les 30 dernières minutes.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "blue"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -765,7 +811,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix trait\u00e9s - 30 min",
+      "title": "Pix traités - 30 min",
       "type": "stat"
     },
     {
@@ -773,11 +819,12 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Volume sur les 30 derni\u00e8res minutes.",
+      "description": "Volume sur les 30 dernières minutes.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "green"
           },
           "thresholds": {
             "mode": "absolute",
@@ -785,10 +832,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -827,7 +870,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix accept\u00e9s - 30 min",
+      "title": "Pix acceptés - 30 min",
       "type": "stat"
     },
     {
@@ -835,22 +878,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Volume sur les 30 derni\u00e8res minutes.",
+      "description": "Volume sur les 30 dernières minutes.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "red"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -889,7 +929,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix rejet\u00e9s - 30 min",
+      "title": "Pix rejetés - 30 min",
       "type": "stat"
     },
     {
@@ -897,22 +937,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Total cumulatif depuis le d\u00e9marrage.",
+      "description": "Total cumulatif depuis le démarrage.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "blue"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -951,7 +988,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix \u00e9mis - p\u00e9riode affich\u00e9e",
+      "title": "Pix émis - période affichée",
       "type": "stat"
     },
     {
@@ -959,22 +996,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Total cumulatif depuis le d\u00e9marrage.",
+      "description": "Total cumulatif depuis le démarrage.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "blue"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -1013,7 +1047,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix trait\u00e9s - p\u00e9riode affich\u00e9e",
+      "title": "Pix traités - période affichée",
       "type": "stat"
     },
     {
@@ -1021,11 +1055,12 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Total cumulatif depuis le d\u00e9marrage.",
+      "description": "Total cumulatif depuis le démarrage.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "green"
           },
           "thresholds": {
             "mode": "absolute",
@@ -1033,10 +1068,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -1075,7 +1106,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix accept\u00e9s - p\u00e9riode affich\u00e9e",
+      "title": "Pix acceptés - période affichée",
       "type": "stat"
     },
     {
@@ -1083,22 +1114,19 @@
         "type": "influxdb",
         "uid": "simulpix-influxdb"
       },
-      "description": "Total cumulatif depuis le d\u00e9marrage.",
+      "description": "Total cumulatif depuis le démarrage.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "red"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -1137,7 +1165,7 @@
           "refId": "A"
         }
       ],
-      "title": "Pix rejet\u00e9s - p\u00e9riode affich\u00e9e",
+      "title": "Pix rejetés - période affichée",
       "type": "stat"
     }
   ],

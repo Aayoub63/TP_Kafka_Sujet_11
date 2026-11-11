@@ -49,8 +49,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "green"
                 }
               }
             ]
@@ -68,8 +68,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "orange",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "red"
                 }
               }
             ]
@@ -102,7 +102,7 @@
           "refId": "A"
         }
       ],
-      "title": "Écarts Kafka => BDD",
+      "title": "Écarts Kafka => BDD : validés (vert), rejetés (rouge)",
       "type": "timeseries"
     },
     {
@@ -131,8 +131,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "green"
                 }
               }
             ]
@@ -150,8 +150,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "orange",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "red"
                 }
               }
             ]
@@ -184,7 +184,7 @@
           "refId": "A"
         }
       ],
-      "title": "Débit d'écriture PostgreSQL (lignes/s)",
+      "title": "Débit d'écriture PostgreSQL (lignes/s) : validés (vert), rejetés (rouge)",
       "type": "timeseries"
     },
     {
@@ -871,7 +871,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "green"
           },
           "thresholds": {
             "mode": "absolute",
@@ -879,10 +880,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -902,8 +899,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "green"
                 }
               }
             ]
@@ -953,18 +950,15 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "red"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -984,8 +978,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "yellow",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "red"
                 }
               }
             ]
@@ -1035,7 +1029,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "green"
           },
           "thresholds": {
             "mode": "absolute",
@@ -1043,10 +1038,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -1066,8 +1057,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "green"
                 }
               }
             ]
@@ -1117,18 +1108,15 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "red"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -1148,8 +1136,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "orange",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "red"
                 }
               }
             ]
@@ -1199,7 +1187,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "green"
           },
           "thresholds": {
             "mode": "absolute",
@@ -1207,10 +1196,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -1230,8 +1215,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "green"
                 }
               }
             ]
@@ -1281,18 +1266,15 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "fixed",
+            "fixedColor": "red"
           },
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
               }
             ]
           },
@@ -1312,8 +1294,8 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "orange",
-                  "mode": "fixed"
+                  "mode": "fixed",
+                  "fixedColor": "red"
                 }
               }
             ]
