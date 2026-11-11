@@ -1,0 +1,5 @@
+{"t": 1794385588.698, "etat": "lance", "debut": 1794385588.6974747, "journal": "runtime/sujet11/lancements/20261111-082628.log", "lancement": "20261111-082628", "qui": "admin", "scenario": "minimale", "semantique": "at_least_once", "charge": "normale"}
+{"t": 1794386282.854, "lancement": "20261111-082628", "etat": "fin", "code": 0, "issue": "REUSSITE", "essai": "20261111-082629-minimale-at_least_once-normale", "sortie": "runtime/sujet11/20261111-082629-minimale-at_least_once-normale"}
+{"t": 1794386338.491, "etat": "lance", "debut": 1794386338.4906406, "journal": "runtime/sujet11/lancements/20261111-083858.log", "lancement": "20261111-083858", "qui": "admin", "scenario": "minimale", "semantique": "at_least_once", "charge": "normale"}
+{"t": 1794386418.954, "lancement": "20261111-083858", "etat": "arret_demande"}
+{"t": 1794386419.02, "lancement": "20261111-083858", "etat": "fin", "code": 130, "issue": "interrompu", "essai": "20261111-083858-minimale-at_least_once-normale", "sortie": "runtime/sujet11/20261111-083858-minimale-at_least_once-normale"}

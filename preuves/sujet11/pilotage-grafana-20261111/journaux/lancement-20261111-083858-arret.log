@@ -1,0 +1,13 @@
+[sujet11] essai 20261111-083858-minimale-at_least_once-normale : 3000 Pix à 20 Pix/s, sortie runtime/sujet11/20261111-083858-minimale-at_least_once-normale
+[sujet11] décalage d'horloge Docker - machine : 0.022 s
+[sujet11] 1/6 audit des écritures
+NOTICE:  table "tp_fault_markers" does not exist, skipping
+NOTICE:  relation "tp_audit_attempts" already exists, skipping
+[sujet11] 2/6 lancement du flux (run-scenario.sh nominal)
+[sujet11]     sémantique appliquée par persister-valid : at_least_once
+[sujet11] 3/6 relevé du groupe simulpix-persister-valid-1794386339
+[sujet11] 4/6 mise à jour de persister-valid (rebuild + remplacement du conteneur)
+[sujet11] 5/6 attente du drainage (limite 120 s)
+[sujet11]     sémantique appliquée par persister-valid après la mise à jour : at_least_once
+[sujet11]     attente de la fin du flux (3000 Pix) puis du lag à 0
+Terminated

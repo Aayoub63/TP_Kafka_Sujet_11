@@ -1,0 +1,48 @@
+[sujet11] essai 20261111-082629-minimale-at_least_once-normale : 3000 Pix à 20 Pix/s, sortie runtime/sujet11/20261111-082629-minimale-at_least_once-normale
+[sujet11] décalage d'horloge Docker - machine : -0.003 s
+[sujet11] 1/6 audit des écritures
+NOTICE:  table "tp_fault_markers" does not exist, skipping
+NOTICE:  relation "tp_audit_attempts" already exists, skipping
+[sujet11] 2/6 lancement du flux (run-scenario.sh nominal)
+[sujet11]     sémantique appliquée par persister-valid : at_least_once
+[sujet11] 3/6 relevé du groupe simulpix-persister-valid-1794385590
+[sujet11] 4/6 mise à jour de persister-valid (rebuild + remplacement du conteneur)
+[sujet11] 5/6 attente du drainage (limite 120 s)
+[sujet11]     sémantique appliquée par persister-valid après la mise à jour : at_least_once
+[sujet11]     attente de la fin du flux (3000 Pix) puis du lag à 0
+[sujet11] 6/6 collecte, oracle et bilan
+[sujet11] collecte : topic=3000 db_validated=3000 db_rejected=0 audit=3000 (audit actif : True)
+==================================================================
+ BILAN SUJET 11 — mode=minimale sémantique=at_least_once charge=normale
+==================================================================
+ Flux : 3000 Pix à 20 Pix/s demandés, 20.1 Pix/s mesurés, persister-valid arret-propre
+ Pause en base         : 3.465 s (borne 60 s, cible métier 10 s : atteinte)
+ Trou normal (référence): 0.985 s : la pause dépasse le rythme normal du flux
+ Retard maximal        : 78 messages
+ Compteurs (topic validated / lignes en base / écart) :
+   avant la mise à jour : 618 / 618 / 0
+   pire moment : 733 / 619 / 114
+   après le flux : 3000 / 3000 / 0
+ Chronologie (secondes après le lancement de la mise à jour) :
+   signal d'arrêt 0.503 | conteneur mort 0.936 | nouveau conteneur 1.144
+   signaux reçus par l'ancienne instance (instant, numéro) : [[0.503, '15']]
+   deux membres dans le groupe None | arrêt de l'ancienne demandé None
+   aucune partition lue (groupe vide ou rebalance) 2.031 | partitions réattribuées 5.016 | lag à 0 5.016
+   dernière écriture 0.816 | première écriture après 4.281
+ Passations de partitions et message en cours :
+   5.016 s partition 0 : instance 1 -> instance 2 (sans propriétaire 2.985 s), reprise à l'offset 103 : tx-00000623 pas encore écrit, lu par la nouvelle instance
+   5.016 s partition 1 : instance 1 -> instance 2 (sans propriétaire 2.985 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   5.016 s partition 2 : instance 1 -> instance 2 (sans propriétaire 2.985 s), reprise à l'offset None : aucun offset validé (partition sans message)
+   5.016 s partition 3 : instance 1 -> instance 2 (sans propriétaire 2.985 s), reprise à l'offset 103 : tx-00000620 pas encore écrit, lu par la nouvelle instance
+   5.016 s partition 4 : instance 1 -> instance 2 (sans propriétaire 2.985 s), reprise à l'offset 207 : tx-00000622 pas encore écrit, lu par la nouvelle instance
+   5.016 s partition 5 : instance 1 -> instance 2 (sans propriétaire 2.985 s), reprise à l'offset 206 : tx-00000619 pas encore écrit, lu par la nouvelle instance
+ Oracle : attendus=3000 présents=3000 perdus=0 valeurs fausses=0 rejets délai=0 rejets métier=0 lignes inattendues=0
+   doubles effets=0 incohérents=0 conflits du topic=0 ; valeurs comparées : amount, beneficiary_account_id, currency, emitter_account_id
+ Trous de transaction_id en base : 0 sur 3000
+ Doublons absorbés (audit) : 0 (relectures sans second effet grâce à l'upsert)
+ Rejets pour délai sur tout le flux : 0
+ Retard résorbé (drainage) en moins de 120 s : oui
+ Horloge Docker - machine : décalage 0.0095 s corrigé, dérive pendant l'essai 0.025 s
+------------------------------------------------------------------
+ VERDICT : REUSSITE
+==================================================================

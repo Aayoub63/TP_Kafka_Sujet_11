@@ -1,0 +1,9 @@
+# Panne brutale at-most-once r1 (campagne-crash-20261110-221339) : attente de la session de l'ancien membre (environ 45 s)
+[2026-11-10 21:18:38,429] INFO [GroupCoordinator 3]: Dynamic member with unknown member id joins group simulpix-persister-valid-1794345475 in Empty state. Created a new member id rdkafka-ef414856-6b72-455e-9bce-81d690c585b1 and re
+[2026-11-10 21:18:38,429] INFO [GroupCoordinator 3]: Preparing to rebalance group simulpix-persister-valid-1794345475 in state PreparingRebalance with old generation 0 (__consumer_offsets-2) (reason: Adding new member rdkafka-ef41
+[2026-11-10 21:18:41,430] INFO [GroupCoordinator 3]: Stabilized group simulpix-persister-valid-1794345475 generation 1 (__consumer_offsets-2) with 1 members (kafka.coordinator.group.GroupCoordinator)
+[2026-11-10 21:19:16,329] INFO [GroupCoordinator 3]: Dynamic member with unknown member id joins group simulpix-persister-valid-1794345475 in Stable state. Created a new member id rdkafka-9b499211-ffbd-4551-bad3-1e12405c625d and r
+[2026-11-10 21:19:16,330] INFO [GroupCoordinator 3]: Preparing to rebalance group simulpix-persister-valid-1794345475 in state PreparingRebalance with old generation 1 (__consumer_offsets-2) (reason: Adding new member rdkafka-9b49
+[2026-11-10 21:20:00,853] INFO [GroupCoordinator 3]: Member rdkafka-ef414856-6b72-455e-9bce-81d690c585b1 in group simulpix-persister-valid-1794345475 has failed, removing it from the group (kafka.coordinator.group.GroupCoordinator
+[2026-11-10 21:20:00,858] INFO [GroupCoordinator 3]: Stabilized group simulpix-persister-valid-1794345475 generation 2 (__consumer_offsets-2) with 1 members (kafka.coordinator.group.GroupCoordinator)
+[2026-11-10 21:22:12,220] INFO [GroupCoordinator 3]: Preparing to rebalance group simulpix-persister-valid-1794345475 in state PreparingRebalance with old generation 2 (__consumer_offsets-2) (reason: Removing member rdkafka-9b4992
