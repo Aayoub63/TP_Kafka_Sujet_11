@@ -1,0 +1,69 @@
+{
+  "parametres": {
+    "mode": "minimale",
+    "semantique": "at_least_once",
+    "charge": "normale",
+    "total": 3000,
+    "debit": 20,
+    "borne_s": 60,
+    "cible_metier_s": 10,
+    "drainage_max_s": 120
+  },
+  "sous_cible_metier": true,
+  "pause": {
+    "ecritures": 3000,
+    "trou_normal_s": 0.983,
+    "pause_s": 3.006,
+    "reprise": true,
+    "derniere_ecriture_avant_s": 1.339,
+    "premiere_ecriture_apres_s": 4.345
+  },
+  "retard_max_messages": 78,
+  "chronologie": {
+    "signal_arret_s": 0.759,
+    "signaux_recus": [
+      [
+        0.759,
+        "15"
+      ]
+    ],
+    "conteneur_mort_s": 1.012,
+    "nouveau_conteneur_s": 1.121,
+    "deux_membres_s": null,
+    "arret_ancien_demande_s": null,
+    "groupe_vide_s": 1.158,
+    "partitions_reattribuees_s": 4.162,
+    "lag_revenu_a_zero_s": 4.162,
+    "groupe_vide_duree_s": 3.004
+  },
+  "drainage_termine": true,
+  "oracle": {
+    "continuite": {
+      "attendus": 3000,
+      "messages_topic": 3000,
+      "classes": {
+        "present": 3000,
+        "valeur_fausse": 0,
+        "rejet_delai": 0,
+        "rejet_metier": 0,
+        "perdu": 0
+      },
+      "lignes_inattendues": 0,
+      "exemples": {}
+    },
+    "doublons": {
+      "audit_actif": true,
+      "tentatives": 3000,
+      "identites_ecrites": 3000,
+      "lignes_en_base": 3000,
+      "doublons_absorbes": 0,
+      "exemples": []
+    },
+    "flux": {
+      "rejets_total": 0,
+      "rejets_delai": 0
+    }
+  },
+  "verdict": "REUSSITE",
+  "raisons": []
+}

@@ -1,0 +1,3 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261107-194433-amelioree-at_least_once-normale,at_least_once,normale,20,3000,0.964,0.987,7,1.004,3000,0,0,0,0,0,True,True,REUSSITE,
+20261107-184831-amelioree-at_most_once-forte,at_most_once,forte,60,9000,0.948,0.939,6,2.065,9000,0,0,0,0,0,True,True,REUSSITE,

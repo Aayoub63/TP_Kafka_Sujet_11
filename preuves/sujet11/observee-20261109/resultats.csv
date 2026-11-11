@@ -1,0 +1,2 @@
+id,semantique,charge,debit,total,pause_s,trou_normal_s,retard_max,groupe_vide_duree_s,attendus,perdus,valeurs_fausses,inattendues,doublons_absorbes,rejets_delai_flux,drainage_termine,sous_cible_metier,verdict,raisons
+20261109-145342-observee-at_least_once-normale,at_least_once,normale,20,3000,3.54,1.005,128,4.036,3000,0,0,0,0,0,True,True,OBSERVATION,

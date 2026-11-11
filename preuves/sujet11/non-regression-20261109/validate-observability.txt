@@ -1,0 +1,234 @@
+[simulpix] validating service-health
+[simulpix] validating InfluxDB
+[simulpix] validating Grafana
+[simulpix] validating provisioned dashboards
+[{"id":1,"uid":"bg0hnu4mhdn9ca","title":"Simul-Pix","uri":"db/simul-pix","url":"/dashboards/f/bg0hnu4mhdn9ca/simul-pix","slug":"","type":"dash-folder","tags":[],"isStarred":false,"sortMeta":0},{"id":9,"uid":"simulpix-pipeline","title":"Simul-Pix - General Dashboard","uri":"db/simul-pix-general-dashboard","url":"/d/simulpix-pipeline/simul-pix-general-dashboard","slug":"","type":"dash-db","tags":["business","influxdb","pipeline","simulpix"],"isStarred":false,"folderId":1,"folderUid":"bg0hnu4mhdn9ca","folderTitle":"Simul-Pix","folderUrl":"/dashboards/f/bg0hnu4mhdn9ca/Simul-Pix","sortMeta":0},{"id":7,"uid":"simulpix-kafka","title":"Simul-Pix - Kafka Dashboard","uri":"db/simul-pix-kafka-dashboard","url":"/d/simulpix-kafka/simul-pix-kafka-dashboard","slug":"","type":"dash-db","tags":["cluster","influxdb","kafka","simulpix"],"isStarred":false,"folderId":1,"folderUid":"bg0hnu4mhdn9ca","folderTitle":"Simul-Pix","folderUrl":"/dashboards/f/bg0hnu4mhdn9ca/Simul-Pix","sortMeta":0},{"id":8,"uid":"simulpix-persistence","title":"Simul-Pix - Persistence Dashboard","uri":"db/simul-pix-persistence-dashboard","url":"/d/simulpix-persistence/simul-pix-persistence-dashboard","slug":"","type":"dash-db","tags":["influxdb","persistence","postgres","simulpix"],"isStarred":false,"folderId":1,"folderUid":"bg0hnu4mhdn9ca","folderTitle":"Simul-Pix","folderUrl":"/dashboards/f/bg0hnu4mhdn9ca/Simul-Pix","sortMeta":0},{"id":11,"uid":"simulpix-sujet11","title":"Simul-Pix - Sujet 11 (mise à jour de persister-valid)","uri":"db/simul-pix-sujet-11-mise-a-jour-de-persister-valid","url":"/d/simulpix-sujet11/simul-pix-sujet-11-mise-a-jour-de-persister-valid","slug":"","type":"dash-db","tags":["simulpix","sujet11"],"isStarred":false,"folderId":1,"folderUid":"bg0hnu4mhdn9ca","folderTitle":"Simul-Pix","folderUrl":"/dashboards/f/bg0hnu4mhdn9ca/Simul-Pix","sortMeta":0},{"id":6,"uid":"simulpix-incidents","title":"Simul-Pix Incidents","uri":"db/simul-pix-incidents","url":"/d/simulpix-incidents/simul-pix-incidents","slug":"","type":"dash-db","tags":["incidents","simulpix"],"isStarred":false,"folderId":1,"folderUid":"bg0hnu4mhdn9ca","folderTitle":"Simul-Pix","folderUrl":"/dashboards/f/bg0hnu4mhdn9ca/Simul-Pix","sortMeta":0}]dashboards= ['Simul-Pix', 'Simul-Pix - General Dashboard', 'Simul-Pix - Kafka Dashboard', 'Simul-Pix - Persistence Dashboard', 'Simul-Pix - Sujet 11 (mise à jour de persister-valid)', 'Simul-Pix Incidents']
+[simulpix] validating InfluxDB measurements
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time            _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  active_controller_count            kafka_broker                 kafka-1  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  active_controller_count            kafka_broker                 kafka-1  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  active_controller_count            kafka_broker                 kafka-1  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  active_controller_count            kafka_broker                 kafka-1  2026-11-09T13:55:28.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  active_controller_count            kafka_broker                 kafka-1  2026-11-09T13:55:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time             _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  offline_partitions_count            kafka_broker                 kafka-1  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  offline_partitions_count            kafka_broker                 kafka-1  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  offline_partitions_count            kafka_broker                 kafka-1  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  offline_partitions_count            kafka_broker                 kafka-1  2026-11-09T13:55:28.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  offline_partitions_count            kafka_broker                 kafka-1  2026-11-09T13:55:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-1  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-1  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-1  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-1  2026-11-09T13:55:28.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-1  2026-11-09T13:55:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-2  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-2  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-2  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-2  2026-11-09T13:55:28.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-2  2026-11-09T13:55:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-2  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-2  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-2  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-2  2026-11-09T13:55:28.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-2  2026-11-09T13:55:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-2  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-2  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-2  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-2  2026-11-09T13:55:28.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-2  2026-11-09T13:55:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-3  2026-11-09T13:54:44.000000000Z                           1
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-3  2026-11-09T13:54:59.000000000Z                           1
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-3  2026-11-09T13:55:13.000000000Z                           1
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-3  2026-11-09T13:55:28.000000000Z                           1
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z      active_controller_count            kafka_broker                 kafka-3  2026-11-09T13:55:42.000000000Z                           1
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-3  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-3  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-3  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-3  2026-11-09T13:55:28.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z     offline_partitions_count            kafka_broker                 kafka-3  2026-11-09T13:55:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-3  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-3  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-3  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-3  2026-11-09T13:55:28.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z  under_replicated_partitions            kafka_broker                 kafka-3  2026-11-09T13:55:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, group]
+                   _start:time                      _stop:time           _field:string     _measurement:string            group:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z               lag_total    kafka_consumer_group      persister-rejected  2026-11-09T13:54:44.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z               lag_total    kafka_consumer_group      persister-rejected  2026-11-09T13:54:59.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z               lag_total    kafka_consumer_group      persister-rejected  2026-11-09T13:55:13.000000000Z                           0
+2026-11-09T13:54:37.131038716Z  2026-11-09T13:59:37.131038716Z               lag_total    kafka_consumer_group      persister-rejected  2026-11-09T13:55:28.000000000Z                           0
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time             _field:string     _measurement:string                      _time:time                  _value:float
+------------------------------  ------------------------------  ------------------------  ----------------------  ------------------------------  ----------------------------
+2026-11-09T13:49:37.299958216Z  2026-11-09T13:59:37.299958216Z  avg_rejection_latency_ms       simulpix_platform  2026-11-09T13:49:42.000000000Z                             0
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time              _field:string     _measurement:string                      _time:time                  _value:float
+------------------------------  ------------------------------  -------------------------  ----------------------  ------------------------------  ----------------------------
+2026-11-09T13:49:37.299958216Z  2026-11-09T13:59:37.299958216Z  avg_validation_latency_ms       simulpix_platform  2026-11-09T13:49:42.000000000Z                        125.45
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time                     _field:string     _measurement:string                      _time:time                  _value:float
+------------------------------  ------------------------------  --------------------------------  ----------------------  ------------------------------  ----------------------------
+2026-11-09T13:49:37.299958216Z  2026-11-09T13:59:37.299958216Z  avg_validation_latency_ms_recent       simulpix_platform  2026-11-09T13:49:42.000000000Z                        125.45
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time              _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -------------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.299958216Z  2026-11-09T13:59:37.299958216Z  checked_topic_end_offsets       simulpix_platform  2026-11-09T13:49:42.000000000Z                        9000
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time              _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -------------------------  ----------------------  ------------------------------  --------------------------
+measurement= simulpix_platform
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time              _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -------------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.432425257Z  2026-11-09T13:59:37.432425257Z  consumer_auto_commit_code      simulpix_semantics  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time               _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  --------------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.432425257Z  2026-11-09T13:59:37.432425257Z  consumer_commit_batch_size      simulpix_semantics  2026-11-09T13:49:42.000000000Z                           1
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time                  _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -----------------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.432425257Z  2026-11-09T13:59:37.432425257Z  consumer_commit_strategy_code      simulpix_semantics  2026-11-09T13:49:42.000000000Z                           1
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time                  _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -----------------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.432425257Z  2026-11-09T13:59:37.432425257Z             consumer_risk_code      simulpix_semantics  2026-11-09T13:49:42.000000000Z                           1
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time                  _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -----------------------------  ----------------------  ------------------------------  --------------------------
+measurement= simulpix_semantics
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time            _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.562449299Z  2026-11-09T13:59:37.562449299Z  active_controller_count            kafka_broker                 kafka-1  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time             _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.562449299Z  2026-11-09T13:59:37.562449299Z  offline_partitions_count            kafka_broker                 kafka-1  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.562449299Z  2026-11-09T13:59:37.562449299Z  under_replicated_partitions            kafka_broker                 kafka-1  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.562449299Z  2026-11-09T13:59:37.562449299Z      active_controller_count            kafka_broker                 kafka-2  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker]
+                   _start:time                      _stop:time                _field:string     _measurement:string           broker:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+measurement= kafka_broker
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement, broker, partition, topic]
+                   _start:time                      _stop:time           _field:string          _measurement:string           broker:string        partition:string            topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ---------------------------  ----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.694155132Z  2026-11-09T13:59:37.694155132Z             lag_offsets  kafka_replication_partition                 kafka-1                       0      __consumer_offsets  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker, partition, topic]
+                   _start:time                      _stop:time           _field:string          _measurement:string           broker:string        partition:string                   topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ---------------------------  ----------------------  ----------------------  -----------------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.694155132Z  2026-11-09T13:59:37.694155132Z             lag_offsets  kafka_replication_partition                 kafka-1                       0  simulpix.transactions.checked  2026-11-09T13:50:25.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker, partition, topic]
+                   _start:time                      _stop:time           _field:string          _measurement:string           broker:string        partition:string                    topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.694155132Z  2026-11-09T13:59:37.694155132Z             lag_offsets  kafka_replication_partition                 kafka-1                       0  simulpix.transactions.decision  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker, partition, topic]
+                   _start:time                      _stop:time           _field:string          _measurement:string           broker:string        partition:string                    topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.694155132Z  2026-11-09T13:59:37.694155132Z             lag_offsets  kafka_replication_partition                 kafka-1                       0   simulpix.transactions.outcome  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, broker, partition, topic]
+                   _start:time                      _stop:time           _field:string          _measurement:string           broker:string        partition:string                    topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ---------------------------  ----------------------  ----------------------  ------------------------------  ------------------------------  --------------------------
+measurement= kafka_replication_partition
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement, group]
+                   _start:time                      _stop:time           _field:string     _measurement:string            group:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.841866508Z  2026-11-09T13:59:37.841866508Z               lag_total    kafka_consumer_group      persister-rejected  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, group]
+                   _start:time                      _stop:time           _field:string     _measurement:string            group:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.841866508Z  2026-11-09T13:59:37.841866508Z               lag_total    kafka_consumer_group         persister-valid  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, group]
+                   _start:time                      _stop:time           _field:string     _measurement:string            group:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.841866508Z  2026-11-09T13:59:37.841866508Z               lag_total    kafka_consumer_group     pix-decision-engine  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, group]
+                   _start:time                      _stop:time           _field:string     _measurement:string            group:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.841866508Z  2026-11-09T13:59:37.841866508Z               lag_total    kafka_consumer_group   pix-outcome-publisher  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement, group]
+                   _start:time                      _stop:time           _field:string     _measurement:string            group:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+measurement= kafka_consumer_group
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement, topic]
+                   _start:time                      _stop:time           _field:string     _measurement:string                   topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  -----------------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.985442466Z  2026-11-09T13:59:37.985442466Z       end_offsets_total             kafka_topic  simulpix.transactions.checked  2026-11-09T13:49:42.000000000Z                        9000
+Table: keys: [_start, _stop, _field, _measurement, topic]
+                   _start:time                      _stop:time           _field:string     _measurement:string                    topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ------------------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.985442466Z  2026-11-09T13:59:37.985442466Z       end_offsets_total             kafka_topic  simulpix.transactions.decision  2026-11-09T13:49:42.000000000Z                        9000
+Table: keys: [_start, _stop, _field, _measurement, topic]
+                   _start:time                      _stop:time           _field:string     _measurement:string                    topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ------------------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.985442466Z  2026-11-09T13:59:37.985442466Z       end_offsets_total             kafka_topic   simulpix.transactions.outcome  2026-11-09T13:49:42.000000000Z                        9000
+Table: keys: [_start, _stop, _field, _measurement, topic]
+                   _start:time                      _stop:time           _field:string     _measurement:string                    topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ------------------------------  ------------------------------  --------------------------
+2026-11-09T13:49:37.985442466Z  2026-11-09T13:59:37.985442466Z       end_offsets_total             kafka_topic       simulpix.transactions.raw  2026-11-09T13:49:42.000000000Z                        9000
+Table: keys: [_start, _stop, _field, _measurement, topic]
+                   _start:time                      _stop:time           _field:string     _measurement:string                    topic:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ------------------------------  ------------------------------  --------------------------
+measurement= kafka_topic
+Result: _result
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time           _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:38.117444299Z  2026-11-09T13:59:38.117444299Z      active_connections        postgres_runtime  2026-11-09T13:49:42.000000000Z                           3
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time           _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:38.117444299Z  2026-11-09T13:59:38.117444299Z     database_size_bytes        postgres_runtime  2026-11-09T13:49:42.000000000Z                    12368919
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time           _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  ----------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:38.117444299Z  2026-11-09T13:59:38.117444299Z          rejected_count        postgres_runtime  2026-11-09T13:49:42.000000000Z                           0
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time              _field:string     _measurement:string                      _time:time                  _value:int
+------------------------------  ------------------------------  -------------------------  ----------------------  ------------------------------  --------------------------
+2026-11-09T13:49:38.117444299Z  2026-11-09T13:59:38.117444299Z  rejected_table_size_bytes        postgres_runtime  2026-11-09T13:49:42.000000000Z                       32768
+Table: keys: [_start, _stop, _field, _measurement]
+                   _start:time                      _stop:time                _field:string     _measurement:string                      _time:time                  _value:float
+------------------------------  ------------------------------  ---------------------------  ----------------------  ------------------------------  ----------------------------
+measurement= postgres_runtime
+[simulpix] observability validation complete
